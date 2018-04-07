@@ -17,6 +17,7 @@
                     <ul class="nav child_menu">
                       <li><a href="ansible_core.php">Criar Pergunta Rapida</a></li>
                       <li><a href="ansible_tower.php">Mostrar Resultados Perguntas</a></li>
+                      <li><a href="meuworkshop.php">Self Service Alunos</a></li>
                     </ul>
                   </li>
 	

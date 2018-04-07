@@ -54,9 +54,10 @@ require_once("top_navigation.php");
 	$user = $_POST['user'];
 	$email_aluno = $_POST['email_aluno'];
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"user=$user email_aluno=$email_aluno\"";
-	$fp = fopen("/tmp/lixo.txt", "w+");
-	fputs($fp, $comando);
-	fclose($fp);
+	$outputfile = "/tmp/$user-log.txt";
+	$pidfile = "/tmp/$user-pid.txt";
+	exec(sprintf("%s > %s 2>&1 & echo $! >> %s", $comando, $outputfile, $pidfile));
+	
 
 	?>
 	Voce recebera um email com detalhes para conexao
