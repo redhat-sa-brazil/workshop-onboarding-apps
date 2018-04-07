@@ -1,3 +1,10 @@
+<?php
+if(!isset($_SESSION['sessao'])) {
+        header("Location: login.html");
+        exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

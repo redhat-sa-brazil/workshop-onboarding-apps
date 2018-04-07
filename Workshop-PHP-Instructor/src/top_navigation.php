@@ -13,14 +13,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;">Ferramentas</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Status Workshop</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Ajuda</a></li>
+                    <li><a href="logoff.php">Logout</a></li>
                   </ul>
                 </li>
 

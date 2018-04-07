@@ -47,11 +47,19 @@ require_once("menu_esquerdo_completo.php");
 require_once("top_navigation.php");
 ?>
         <!-- page content -->
-        <div class="right_col" role="main">
-<p>Seja bem vindo ao Workshop Openshift!</p>
-<img src="images/logo_openshift_grande.png"><br>
-<img src="images/ansible-wide.png">
 
+	
+        <div class="right_col" role="main">
+	<?php
+	$user = $_POST['user'];
+	$email_aluno = $_POST['email_aluno'];
+	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"user=$user email_aluno=$email_aluno\"";
+	$fp = fopen("/tmp/lixo.txt", "w+");
+	fputs($fp, $comando);
+	fclose($fp);
+
+	?>
+	Voce recebera um email com detalhes para conexao
 </div>
         <!-- /page content -->
 
