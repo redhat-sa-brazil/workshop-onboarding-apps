@@ -1,5 +1,4 @@
 <?php
-require_once "config.php";
 if(!isset($_SESSION['sessao'])) {
         header("Location: login.html");
         exit;
@@ -94,46 +93,11 @@ $instancias = 0;
 
 
 
-
-
-
-
-
-
-
-
-<?php
-
-$d = dir("/tmp");
-//echo "Handle: " . $d->handle . "<br>\n";
-//echo "Caminho: " . $d->path . "<br>\n";
-$MPids = array();
-
-while (false !== ($entry = $d->read())) {
-   	if(ereg("pid", $entry)) {
-		// ============================
-		// Situacao da Instancia
-		// ============================
-		$Sub = explode("-", $entry);
-		$nome_instancia = $Sub[0];
-		
-		$pid = intval(file_get_contents($entry));
-//		echo "<br><b>Verificando status maquina $entry...</b><br>";
-		$log_ansible = "/tmp/".$nome_instancia."-log.txt";
-		$conteudo_ansible = nl2br(file_get_contents($log_ansible));
-		if(isRunning($pid)) {
-//			echo "Processo rodando...<br>";
-		} else {
-//			echo "Processo finalizado<br>";
-		}
-?>
-
-
             <div class="row">
-              <div class="col-md-12">
-                <div class="x_panel collapsed">
+              <div class="col-md-4">
+                <div class="x_panel">
                   <div class="x_title">
-                    <h2>Instancia <?php echo $nome_instancia;?> <small>Resultado Playbook</small></h2>
+                    <h2>Top Profiles <small>Sessions</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -153,9 +117,53 @@ while (false !== ($entry = $d->read())) {
                   </div>
                   <div class="x_content">
                     <article class="media event">
+                      <a class="pull-left date">
+                        <p class="month">April</p>
+                        <p class="day">23</p>
+                      </a>
                       <div class="media-body">
-                        <a class="title" href="#">Resultado do arquivo <?php echo $log_ansible;?></a>
-                        <p><?php echo $conteudo_ansible;?></p>
+                        <a class="title" href="#">Item One Title</a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+                    </article>
+                    <article class="media event">
+                      <a class="pull-left date">
+                        <p class="month">April</p>
+                        <p class="day">23</p>
+                      </a>
+                      <div class="media-body">
+                        <a class="title" href="#">Item Two Title</a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+                    </article>
+                    <article class="media event">
+                      <a class="pull-left date">
+                        <p class="month">April</p>
+                        <p class="day">23</p>
+                      </a>
+                      <div class="media-body">
+                        <a class="title" href="#">Item Two Title</a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+                    </article>
+                    <article class="media event">
+                      <a class="pull-left date">
+                        <p class="month">April</p>
+                        <p class="day">23</p>
+                      </a>
+                      <div class="media-body">
+                        <a class="title" href="#">Item Two Title</a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                      </div>
+                    </article>
+                    <article class="media event">
+                      <a class="pull-left date">
+                        <p class="month">April</p>
+                        <p class="day">23</p>
+                      </a>
+                      <div class="media-body">
+                        <a class="title" href="#">Item Three Title</a>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                       </div>
                     </article>
                   </div>
@@ -167,11 +175,34 @@ while (false !== ($entry = $d->read())) {
 
 
 
+
+
+
+
+
+          </div>
+        </div>
+
+
+
+        <div class="right_col" role="main">
+
+
 <?php
 
-		// Fim da situacao da instancia
-
-
+$d = dir("/tmp");
+echo "Handle: " . $d->handle . "<br>\n";
+echo "Caminho: " . $d->path . "<br>\n";
+$MPids = array();
+while (false !== ($entry = $d->read())) {
+   	if(ereg("pid", $entry)) {
+		$pid = intval(file_get_contents($entry));
+		echo "<br><b>Verificando status maquina $entry...</b><br>";
+		if(isRunning($pid)) {
+			echo "Processo rodando...<br>";
+		} else {
+			echo "Processo finalizado<br>";
+		}
 	}
 }
 $d->close();
@@ -189,9 +220,8 @@ function isRunning($pid){
 
 ?>
 
-          </div>
-        </div>
 
+</div>
         <!-- /page content -->
 
         <!-- footer content -->
@@ -245,18 +275,6 @@ function isRunning($pid){
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-        <script>
-
-$(function() {
-
-$('.collapsed').css('height', 'auto');
-$('.collapsed').find('.x_content').css('display', 'none');
-$('.collapsed').find('i').toggleClass('fa-chevron-up fa-chevron-down');
-
-});
-
-
-        </script>
 	
   </body>
 </html>

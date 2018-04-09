@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-cloud"></i> <span>Workshop OCP!</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-cloud"></i> <span>Instructor App!</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -13,7 +13,7 @@
               </div>
               <div class="profile_info">
                 <span>Bem-vindo(a),</span>
-                <h2><?php echo getenv("ALUNO");?></h2>
+                <h2>Instrutor</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->

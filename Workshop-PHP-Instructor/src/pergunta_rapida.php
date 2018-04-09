@@ -1,5 +1,4 @@
 <?php
-require_once "config.php";
 if(!isset($_SESSION['sessao'])) {
         header("Location: login.html");
         exit;
@@ -49,10 +48,7 @@ require_once("top_navigation.php");
 ?>
         <!-- page content -->
         <div class="right_col" role="main">
-<p>Seja bem vindo ao Workshop Openshift!</p>
-<img src="images/logo_openshift_grande.png"><br>
-<img src="images/ansible-wide.png">
-
+Este workshop foi criado para permitir melhor compreensão sobre o valor de containers para as áreas de Desenvolvimento, Infra-Estrutura e Negócios e para entender como Red Hat Openshift pode ajudar a extrair todo o potencial dos containers.
 </div>
         <!-- /page content -->
 
