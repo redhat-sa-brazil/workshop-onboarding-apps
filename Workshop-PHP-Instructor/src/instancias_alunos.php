@@ -1,3 +1,10 @@
+<?php
+if(!isset($_SESSION['sessao'])) {
+        header("Location: login.html");
+        exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,21 +39,50 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
+<?php 
+require_once("menu_esquerdo_completo.php");
+?>
+
+<?php
+require_once("top_navigation.php");
+?>
         <!-- page content -->
-
-	
         <div class="right_col" role="main">
-	<?php
-	$user = $_POST['user'];
-	$email_aluno = $_POST['email_aluno'];
-	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"user=$user email_aluno=$email_aluno\"";
-	$outputfile = "/tmp/$user-log.txt";
-	$pidfile = "/tmp/$user-pid.txt";
-	exec(sprintf("%s > %s 2>&1 & echo $! >> %s", $comando, $outputfile, $pidfile));
-	
 
-	?>
-	Voce recebera um email com detalhes para conexao
+
+<?php
+
+$d = dir("/tmp");
+echo "Handle: " . $d->handle . "<br>\n";
+echo "Caminho: " . $d->path . "<br>\n";
+$MPids = array();
+while (false !== ($entry = $d->read())) {
+   	if(ereg("pid", $entry)) {
+		$pid = intval(file_get_contents($entry));
+		echo "<br><b>Verificando status maquina $entry...</b><br>";
+		if(isRunning($pid)) {
+			echo "Processo rodando...<br>";
+		} else {
+			echo "Processo finalizado<br>";
+		}
+	}
+}
+$d->close();
+
+function isRunning($pid){
+    try{
+        $result = shell_exec(sprintf("ps %d", $pid));
+        if( count(preg_split("/\n/", $result)) > 2){
+            return true;
+        }
+    }catch(Exception $e){}
+
+    return false;
+}
+
+?>
+
+
 </div>
         <!-- /page content -->
 

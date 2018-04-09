@@ -33,13 +33,7 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-<?php 
-require_once("menu_esquerdo_completo.php");
-?>
 
-<?php
-require_once("top_navigation.php");
-?>
         <!-- page content -->
 
 <?php
@@ -62,14 +56,6 @@ for($x=0;$x<sizeof($Matriz);$x++) {
               </div>
 
               <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
             <div class="clearfix"></div>
