@@ -1,3 +1,10 @@
+<?php
+if(!isset($_SESSION['sessao'])) {
+        header("Location: login.html");
+        exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,39 +39,41 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
+<?php 
+require_once("menu_esquerdo_completo.php");
+?>
+
+<?php
+require_once("top_navigation.php");
+?>
         <!-- page content -->
-
-	
         <div class="right_col" role="main">
-	<?php
-	$nome_aluno = $_POST['user'];
-	$email_aluno = $_POST['email_aluno'];
+   <?php
+        $instancia = $_GET['instancia'];
+	$instancia = str_replace(";", "", $instancia);
+	$instancia = str_replace("/", "", $instancia);
+	$instancia = str_replace("|", "", $instancia);
 
-	if (filter_var($email_aluno, FILTER_VALIDATE_EMAIL)) {
-	$Sub = explode("@", $email_aluno);
-	$prefixo = strtolower($Sub[0]);
-	$Subdominio = explode(".", $Sub[1]);
-	$sufixo = strtolower($Subdominio[0]);
-	$user = $prefixo."-".$sufixo;
-	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
-	$outputfile = "/tmp/$user-log.txt";
-	$pidfile = "/tmp/$user-pid.txt";
-	$commandfile = "/tmp/$user-cmd.txt";
-	$fp = fopen($commandfile, "w+");
-	fputs($fp, $comando);
-	fclose($fp);
-	exec(sprintf("%s > %s 2>&1 & echo $! >> %s", $comando, $outputfile, $pidfile));
+	$arquivo_cmd = "/tmp/$instancia-cmd.txt";
+	$comando = chop(file_get_contents($arquivo_cmd));
+	echo $comando;
+        $outputfile = "/tmp/$instancia-log.txt";
+        $pidfile = "/tmp/$instancia-pid.txt";
+        $commandfile = "/tmp/$instancia-cmd.txt";
+        $fp = fopen($commandfile, "w+");
+        fputs($fp, $comando);
+        fclose($fp);
+        exec(sprintf("%s > %s 2>&1 & echo $! >> %s", $comando, $outputfile, $pidfile));
 
-	?>
-	Voce recebera um email com detalhes para conexao
-	<?php
-	} else {
+        ?>
+        Comando reagendado...
+        <?php
 
-	?>
-	Erro ao solicitar instancia... verifique seu email...
-	<?php
-	}
-	?>
+        ?>
+        Erro ao reagendar comando...
+        <?php
+        ?>
+
 </div>
         <!-- /page content -->
 

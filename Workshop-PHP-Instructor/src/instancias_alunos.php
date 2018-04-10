@@ -50,6 +50,17 @@ require_once("top_navigation.php");
         <!-- page content -->
 <?php
 $instancias = 0;
+
+$d = dir("/tmp");
+//echo "Handle: " . $d->handle . "<br>\n";
+//echo "Caminho: " . $d->path . "<br>\n";
+$MPids = array();
+
+while (false !== ($entry = $d->read())) {
+        if(ereg("-pid", $entry)) {
+		$instancias++;
+	}
+}
 ?>
 
  	<div class="right_col" role="main">
@@ -110,11 +121,11 @@ $d = dir("/tmp");
 $MPids = array();
 
 while (false !== ($entry = $d->read())) {
-   	if(ereg("pid", $entry)) {
+   	if(ereg("-pid", $entry)) {
 		// ============================
 		// Situacao da Instancia
 		// ============================
-		$Sub = explode("-", $entry);
+		$Sub = explode("-pid", $entry);
 		$nome_instancia = $Sub[0];
 		
 		$pid = intval(file_get_contents($entry));
@@ -133,16 +144,15 @@ while (false !== ($entry = $d->read())) {
               <div class="col-md-12">
                 <div class="x_panel collapsed">
                   <div class="x_title">
-                    <h2>Instancia <?php echo $nome_instancia;?> <small>Resultado Playbook</small></h2>
+                    <h2><a class="collapse-link">Instancia <?php echo $nome_instancia;?></a> <small>Resultado Playbook</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
+			<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
+                          <li><a href="rerun.php?instancia=<?php echo $nome_instancia;?>">Roda Playbook Novamente</a>
                           </li>
-                          <li><a href="#">Settings 2</a>
                           </li>
                         </ul>
                       </li>

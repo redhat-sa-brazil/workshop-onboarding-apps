@@ -129,6 +129,21 @@ for($x=0;$x<sizeof($Matriz);$x++) {
 $conteudo_chave_ssh = file_get_contents("$chave_ssh");
 $conteudo_json_gce = file_get_contents("$arquivo_json");
 
+$cluster_openshift_env = getenv("CLUSTER_OPENSHIFT");
+if($cluster_openshift_env != "") {
+	$Vars['cluster_openshift'] = $cluster_openshift_env;
+}
+
+$token_openshift_env = getenv("TOKEN_OPENSHIFT");
+if($token_openshift_env != "") {
+	$Vars['token_openshift'] = $token_openshift_env;
+}
+
+
+$wetty_url_env = getenv("WETTY_URL");
+if($wetty_url_env != "") {
+	$Vars['url_wetty'] = $wetty_url_env;
+}
 ?>
 
 <div class="right_col" role="main">
@@ -185,12 +200,20 @@ $conteudo_json_gce = file_get_contents("$arquivo_json");
                         </div>
                       </div>
                       <div class="form-group">
-			 <label for="message">Json GCE</label>
+
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Json GCE<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                           <textarea id="json_gce" name="json_gce" required="required" class="form-control" name="message" rows="10"><?php echo $conteudo_json_gce;?></textarea>
+			</div>
                       </div>
 	 		<div class="form-group">
-                         <label for="message">Chave SSH</label>
+
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">SSH GCE <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                           <textarea id="chave_ssh" name="chave_ssh" required="required" class="form-control" name="message" rows="10"><?php echo $conteudo_chave_ssh;?></textarea>
+			</div>
                       </div>
 
 
