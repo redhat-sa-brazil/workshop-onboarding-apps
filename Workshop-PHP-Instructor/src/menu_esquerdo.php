@@ -17,7 +17,7 @@
                     <ul class="nav child_menu">
                       <li><a href="pergunta_rapida.php">Criar Pergunta Rapida</a></li>
                       <li><a href="respostas_rapidas.php">Mostrar Resultados Perguntas</a></li>
-                      <li><a href="meuworkshop.php">Self Service Alunos</a></li>
+                      <li><a href="meuworkshop.php" target="blank">Self Service Alunos</a></li>
                       <li><a href="instancias_alunos.php">Instancias Alunos</a></li>
                     </ul>
                   </li>
