@@ -56,7 +56,7 @@ require_once("top_navigation.php");
 
 	$arquivo_cmd = "/tmp/$instancia-cmd.txt";
 	$comando = chop(file_get_contents($arquivo_cmd));
-	echo $comando;
+//	echo $comando;
         $outputfile = "/tmp/$instancia-log.txt";
         $pidfile = "/tmp/$instancia-pid.txt";
         $commandfile = "/tmp/$instancia-cmd.txt";
@@ -70,7 +70,6 @@ require_once("top_navigation.php");
         <?php
 
         ?>
-        Erro ao reagendar comando...
         <?php
         ?>
 

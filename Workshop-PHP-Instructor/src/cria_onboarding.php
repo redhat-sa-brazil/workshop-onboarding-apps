@@ -63,6 +63,7 @@
 
 	if(!$Instructor->VerificaSeAlunoJaExiste($Student)) {
 	$Instructor->CadastraAluno($Student);
+	$user = str_replace(".", "-", $user);
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
 	$outputfile = "/tmp/$user-log.txt";
 	$pidfile = "/tmp/$user-pid.txt";
