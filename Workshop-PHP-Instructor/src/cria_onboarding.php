@@ -37,8 +37,11 @@
 	
         <div class="right_col" role="main">
 	<?php
+	require_once "config.php";
 	$nome_aluno = $_POST['user'];
 	$email_aluno = $_POST['email_aluno'];
+	$empresa = $_POST['empresa'];
+	$id_area = $_POST['id_area'];
 
 	if (filter_var($email_aluno, FILTER_VALIDATE_EMAIL)) {
 	$Sub = explode("@", $email_aluno);
@@ -46,6 +49,20 @@
 	$Subdominio = explode(".", $Sub[1]);
 	$sufixo = strtolower($Subdominio[0]);
 	$user = $prefixo."-".$sufixo;
+	$Student = new Student;
+	$Student->nome = $nome_aluno;
+	$Student->empresa = $empresa;
+	$Student->email = $email_aluno;
+	$Student->id_area = $id_area;
+	$Instructor = new Instructor;
+	// Circuit breaker!
+	if($Instructor->VerificaTotalAlunos() > 50) {
+		exit;
+	}
+
+
+	if(!$Instructor->VerificaSeAlunoJaExiste($Student)) {
+	$Instructor->CadastraAluno($Student);
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
 	$outputfile = "/tmp/$user-log.txt";
 	$pidfile = "/tmp/$user-pid.txt";
@@ -54,17 +71,33 @@
 	fputs($fp, $comando);
 	fclose($fp);
 	exec(sprintf("%s > %s 2>&1 & echo $! >> %s", $comando, $outputfile, $pidfile));
-
+		$msg = "Voce recebera um email com detalhes para conexao";
 	?>
-	Voce recebera um email com detalhes para conexao
 	<?php
 	} else {
-
+		$msg = "Erro ao solicitar instancia... verifique seu email...";
 	?>
-	Erro ao solicitar instancia... verifique seu email...
 	<?php
 	}
+	} else {
+		$msg = "Sua instancia ja foi solicitada...";
+	}
 	?>
+  <div class="col-md-6">
+              <div class="x_panel">
+<div class="x_content bs-example-popovers">
+
+                  <div class="alert alert-success alert-dismissible fade in" role="alert">
+                    <strong><?php echo $msg;?></strong>
+                  <button type="button" class="btn btn-primary" onclick="window.close();">Fechar Janela</button>
+                  </div>
+		
+                </div>
+
+
+</div>
+
+</div>
 </div>
         <!-- /page content -->
 

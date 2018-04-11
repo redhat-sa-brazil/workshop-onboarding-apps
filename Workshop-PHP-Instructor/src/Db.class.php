@@ -70,6 +70,35 @@ class Db {
         public function escape($string) {
             return mysql_real_escape_string($string, $this->idcon);
         }
+
+	// ======================= Funcoes Especificas para Instructor ================
+
+	public function CreateSchema() {
+		$qr = "
+create table if not exists student ( 
+	id_student int primary key auto_increment not null,
+	nome varchar(255),
+	dthr_registro datetime,
+	id_area int,
+	email varchar(255),
+	empresa varchar(255)
+)
+";
+		$rs = $this->m_query($qr);
+		$qr = "create table if not exists area (
+        id_area int primary key auto_increment not null,
+        area varchar(255)
+)
+";
+		$rs = $this->m_query($qr);
+	}
+	public function PopulateAreas() {
+		$qr = "delete from area";
+		$rs = $this->m_query($qr);
+		$qr = "
+	insert into area (id_area, area) values ('1', 'Arquitetura'), ('2','Infraestrutura'), ('3', 'Desenvolvimento'), ('4', 'Gestao')"; 
+		$rs = $this->m_query($qr);
+	}
 	
 }
 

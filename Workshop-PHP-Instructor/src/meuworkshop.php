@@ -37,6 +37,9 @@
         <!-- page content -->
 
 <?php
+require_once "config.php";
+$Instructor = new Instructor;
+$Mareas = $Instructor->ObtemAreas();
 $Matriz = file("/etc/ansible/playbooks/workshop-onboarding/config.yml");
 $Vars = array();
 for($x=0;$x<sizeof($Matriz);$x++) {
@@ -103,14 +106,28 @@ for($x=0;$x<sizeof($Matriz);$x++) {
                           <input type="text" id="email_aluno" name="email_aluno" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
+                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Empresa <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="empresa" name="empresa" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Selecione seu perfil</label>
 			 <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control">
-                            <option>Arquitetura</option>
-                            <option>Operacoes</option>
-                            <option>Gerencia</option>
-                            <option>Desenvolvedor</option>
+                          <select class="form-control" name="id_area">
+				<?php
+					for($x=0;$x<sizeof($Mareas);$x++) {
+						$id_area = $Mareas[$x]['id_area'];
+						$area = $Mareas[$x]['area'];
+
+				?>
+                            <option value="<?php echo $id_area;?>"><?php echo $area;?></option>
+				<?php
+					}
+				?>
                           </select>
                         </div>
                       </div>

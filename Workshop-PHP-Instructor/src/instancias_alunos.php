@@ -128,7 +128,7 @@ while (false !== ($entry = $d->read())) {
 		$Sub = explode("-pid", $entry);
 		$nome_instancia = $Sub[0];
 		
-		$pid = intval(file_get_contents($entry));
+		$pid = intval(file_get_contents("/tmp/$entry"));
 //		echo "<br><b>Verificando status maquina $entry...</b><br>";
 		$log_ansible = "/tmp/".$nome_instancia."-log.txt";
 		$conteudo_ansible = nl2br(file_get_contents($log_ansible));

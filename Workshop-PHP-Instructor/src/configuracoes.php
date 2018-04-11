@@ -50,6 +50,16 @@ require_once("top_navigation.php");
 
 <?php
 // =================================
+// Rotina para Criacao e populacao de Esquema
+// =================================
+require_once "config.php";
+$Db = new Db;
+$Db->CreateSchema();
+$Db->PopulateAreas();
+$Db->m_close();
+
+
+// =================================
 // Variaveis de arquivo
 // =================================
 $config_yaml = "/etc/ansible/playbooks/workshop-onboarding/config.yml";
