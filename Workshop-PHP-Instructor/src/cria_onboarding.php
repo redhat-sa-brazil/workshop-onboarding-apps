@@ -64,7 +64,36 @@
 	if(!$Instructor->VerificaSeAlunoJaExiste($Student)) {
 	$Instructor->CadastraAluno($Student);
 	$user = str_replace(".", "-", $user);
+
+// =================================
+// Carrega configuracoes salvas
+// =================================
+// =================================
+// Variaveis de arquivo
+// =================================
+$config_yaml = "/etc/ansible/playbooks/workshop-onboarding/config.yml";
+$arquivo_json = "/etc/ansible/playbooks/gce.json";
+$chave_ssh = "/etc/ansible/playbooks/ssh_gce";
+
+
+$Matriz = file("$config_yaml");
+$Vars = array();
+for($x=0;$x<sizeof($Matriz);$x++) {
+        $linha = $Matriz[$x];
+        $Sub = explode(": ", $linha);
+        $chave = $Sub[0];
+        $valor = $Sub[1];
+        $Vars[$chave] = $valor;
+}
+
+
+	if($Vars['tipo_workshop'] == "1") {
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
+	}
+	if($Vars['tipo_workshop'] == "2") {
+	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_ansible.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
+	}
+
 	$outputfile = "/tmp/$user-log.txt";
 	$pidfile = "/tmp/$user-pid.txt";
 	$commandfile = "/tmp/$user-cmd.txt";

@@ -98,6 +98,7 @@ if(isset($_POST['salvar'])) {
 	$endereco_tower = $_POST['endereco_tower'];
 	$url_wetty = $_POST['url_wetty'];
 	$link_form_feedback = $_POST['link_form_feedback'];
+	$tipo_workshop = $_POST['tipo_workshop'];
 
 
 	$conteudo = "
@@ -115,6 +116,7 @@ endereco_tower: $endereco_tower
 senha_email: $senha_email
 url_wetty: $url_wetty
 link_form_feedback: $link_form_feedback
+tipo_workshop: $tipo_workshop
 ";
 
 	$fp = fopen("$config_yaml", "w+");
@@ -311,6 +313,29 @@ if($wetty_url_env != "") {
                         </div>
                       </div>
 
+			<div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Selecione o tipo do Workshop</label>
+                         <div class="col-md-9 col-sm-9 col-xs-12">
+			<?php
+				if(isset($Vars['tipo_workshop'])) {
+					$tipo_workshop = $Vars['tipo_workshop'];
+					if($tipo_workshop == 1) {
+						$o = " selected";
+					}
+					if($tipo_workshop == 2) {
+						$a = " selected";
+					}
+
+				} else {
+					$o = " selected";
+				}
+			?>
+                          <select class="form-control" name="tipo_workshop">
+                            <option value="1" <?php echo $o;?>>Openshift</option>
+                            <option value="2" <?php echo $a;?>>Ansible</option>
+                          </select>
+                        </div>
+                      </div>
 
 
 
