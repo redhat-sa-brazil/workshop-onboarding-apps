@@ -151,6 +151,12 @@ if($token_openshift_env != "") {
 	$Vars['token_openshift'] = $token_openshift_env;
 }
 
+$conteudo_json_env = getenv("CONTEUDO_JSON");
+if($conteudo_json_env != "") {
+	$conteudo_json_gce = $conteudo_json_env;
+}
+
+
 
 $wetty_url_env = getenv("WETTY_URL");
 if($wetty_url_env != "") {
@@ -259,7 +265,7 @@ if($wetty_url_env != "") {
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Token Openshift<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="token_openshift" name="token_openshift" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text"  value="<?php echo $Vars['token_openshift'];?>">
+			 <textarea id="token_openshift" name="token_openshift" required="required" class="form-control" name="message" rows="4"><?php echo $token_openshift;?></textarea>
                         </div>
                       </div>
 

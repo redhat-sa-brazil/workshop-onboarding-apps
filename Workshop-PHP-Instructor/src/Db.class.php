@@ -91,6 +91,8 @@ create table if not exists student (
 )
 ";
 		$rs = $this->m_query($qr);
+		$qr = "create table config (config text)";
+		$rs = $this->m_query($qr);
 	}
 	public function PopulateAreas() {
 		$qr = "delete from area";
