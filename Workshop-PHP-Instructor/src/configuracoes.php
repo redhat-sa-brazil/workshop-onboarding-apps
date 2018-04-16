@@ -318,7 +318,7 @@ if($wetty_url_env != "") {
                          <div class="col-md-9 col-sm-9 col-xs-12">
 			<?php
 				if(isset($Vars['tipo_workshop'])) {
-					$tipo_workshop = $Vars['tipo_workshop'];
+					$tipo_workshop = intval($Vars['tipo_workshop']);
 					if($tipo_workshop == 1) {
 						$o = " selected";
 					}

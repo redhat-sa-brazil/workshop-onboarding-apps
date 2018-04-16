@@ -87,10 +87,10 @@ for($x=0;$x<sizeof($Matriz);$x++) {
 }
 
 
-	if($Vars['tipo_workshop'] == "1") {
+	if(intval($Vars['tipo_workshop']) == "1") {
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
 	}
-	if($Vars['tipo_workshop'] == "2") {
+	if(intval($Vars['tipo_workshop']) == "2") {
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_ansible.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
 	}
 
