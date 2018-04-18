@@ -117,6 +117,7 @@ senha_email: $senha_email
 url_wetty: $url_wetty
 link_form_feedback: $link_form_feedback
 tipo_workshop: $tipo_workshop
+salvo: true
 ";
 
 	$fp = fopen("$config_yaml", "w+");
@@ -142,18 +143,24 @@ $conteudo_chave_ssh = file_get_contents("$chave_ssh");
 $conteudo_json_gce = file_get_contents("$arquivo_json");
 
 $cluster_openshift_env = getenv("CLUSTER_OPENSHIFT");
-if($cluster_openshift_env != "") {
+if($cluster_openshift_env != "" and !isset($Vars['salvo'])) {
 	$Vars['cluster_openshift'] = $cluster_openshift_env;
 }
 
 $token_openshift_env = getenv("TOKEN_OPENSHIFT");
-if($token_openshift_env != "") {
+if($token_openshift_env != "" and !isset($Vars['salvo'])) {
 	$Vars['token_openshift'] = $token_openshift_env;
+	$token_openshift = $token_openshift_env;
 }
 
-$conteudo_json_env = getenv("CONTEUDO_JSON");
-if($conteudo_json_env != "") {
+$conteudo_json_env = file_get_contents("/etc/ansible/workshop-stuff/conteudo_json_gce.json");
+if($conteudo_json_env != "" and !isset($Vars['salvo'])) {
 	$conteudo_json_gce = $conteudo_json_env;
+}
+
+$conteudo_chavessh_env = file_get_contents("/etc/ansible/workshop-stuff/chave_ssh");
+if($conteudo_chavessh_env != "" and !isset($Vars['salvo'])) {
+        $conteudo_chave_ssh = $conteudo_chavessh_env;
 }
 
 
