@@ -80,10 +80,12 @@ $Matriz = file("$config_yaml");
 $Vars = array();
 for($x=0;$x<sizeof($Matriz);$x++) {
         $linha = $Matriz[$x];
-        $Sub = explode(": ", $linha);
-        $chave = $Sub[0];
-        $valor = $Sub[1];
-        $Vars[$chave] = $valor;
+        if(ereg(":", $linha)) {
+        	$Sub = explode(": ", $linha);
+        	$chave = $Sub[0];
+        	$valor = $Sub[1];
+        	$Vars[$chave] = $valor;
+	}
 }
 
 
