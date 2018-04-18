@@ -144,11 +144,11 @@ for($x=0;$x<sizeof($Matriz);$x++) {
 $conteudo_chave_ssh = file_get_contents("$chave_ssh");
 $conteudo_json_gce = file_get_contents("$arquivo_json");
 
-$JsonGCE = json_decode(file_get_contents("/etc/ansible/workshop-stuff/conteudo_json_gce.json");
+$JsonGCE = json_decode(file_get_contents("/etc/ansible/workshop-stuff/conteudo_json_gce.json"));
 
 if(!isset($Vars['salvo'])) {
 	$Vars['project_id'] = $JsonGCE->project_id;
-	$Vars['service_account_email'] = $JsonGCE->service_account_email;
+	$Vars['service_account_email'] = $JsonGCE->client_email;
 }
 
 $cluster_openshift_env = getenv("CLUSTER_OPENSHIFT");
