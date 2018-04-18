@@ -151,6 +151,8 @@ $token_openshift_env = getenv("TOKEN_OPENSHIFT");
 if($token_openshift_env != "" and !isset($Vars['salvo'])) {
 	$Vars['token_openshift'] = $token_openshift_env;
 	$token_openshift = $token_openshift_env;
+} else {
+	$token_openshift = $Vars['token_openshift'];
 }
 
 $conteudo_json_env = file_get_contents("/etc/ansible/workshop-stuff/conteudo_json_gce.json");
@@ -163,10 +165,8 @@ if($conteudo_chavessh_env != "" and !isset($Vars['salvo'])) {
         $conteudo_chave_ssh = $conteudo_chavessh_env;
 }
 
-
-
 $wetty_url_env = getenv("WETTY_URL");
-if($wetty_url_env != "") {
+if($wetty_url_env != "" and !isset($Vars['salvo'])) {
 	$Vars['url_wetty'] = $wetty_url_env;
 }
 ?>
