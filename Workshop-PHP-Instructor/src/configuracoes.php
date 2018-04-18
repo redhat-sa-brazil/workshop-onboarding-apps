@@ -144,6 +144,13 @@ for($x=0;$x<sizeof($Matriz);$x++) {
 $conteudo_chave_ssh = file_get_contents("$chave_ssh");
 $conteudo_json_gce = file_get_contents("$arquivo_json");
 
+$JsonGCE = json_decode($conteudo_json_gce);
+
+if(!isset($Vars['salvo']) {
+	$Vars['project_id'] = $JsonGCE->project_id;
+	$Vars['service_account_email'] = $JsonGCE->service_account_email;
+}
+
 $cluster_openshift_env = getenv("CLUSTER_OPENSHIFT");
 if($cluster_openshift_env != "" and !isset($Vars['salvo'])) {
 	$Vars['cluster_openshift'] = $cluster_openshift_env;
