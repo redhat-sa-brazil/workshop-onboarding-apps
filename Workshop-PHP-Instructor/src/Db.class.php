@@ -97,7 +97,7 @@ create table if not exists student (
 	public function PopulateAreas() {
 		$qr = "delete from area";
 		$rs = $this->m_query($qr);
-		$qr = "insert into area (id_area, area) values ('1', 'Arquitetura'), ('2','Infraestrutura'), ('3', 'Desenvolvimento'), ('4', 'Gestao'), ('5', 'Devops')"; 
+		$qr = "insert into area (id_area, area) values ('1', 'Arquitetura'), ('2','Infraestrutura'), ('3', 'Desenvolvimento'), ('4', 'Gestao'), ('5', 'DevOps')"; 
 		$rs = $this->m_query($qr);
 	}
 	
