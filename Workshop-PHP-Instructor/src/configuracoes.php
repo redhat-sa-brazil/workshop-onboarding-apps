@@ -152,6 +152,11 @@ if(!isset($Vars['salvo'])) {
 	$Vars['project_id'] = $JsonGCE->project_id;
 	$Vars['service_account_email'] = $JsonGCE->client_email;
 	$Vars['etherpad_url'] = getenv("ETHERPAD_URL");
+	$Vars['nome_projeto_openshift'] = "workshop-alunos";
+	$Vars['nome_workshop'] = "workshop1";
+	$Vars['url_wetty'] = "-";
+	$Vars['endereco_tower'] = "-";
+	
 }
 
 $cluster_openshift_env = getenv("CLUSTER_OPENSHIFT");
