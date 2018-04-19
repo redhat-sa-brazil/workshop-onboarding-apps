@@ -99,6 +99,7 @@ if(isset($_POST['salvar'])) {
 	$url_wetty = $_POST['url_wetty'];
 	$link_form_feedback = $_POST['link_form_feedback'];
 	$tipo_workshop = $_POST['tipo_workshop'];
+	$etherpad_url = $_POST['etherpad_url'];
 
 
 	$conteudo = "
@@ -117,6 +118,7 @@ senha_email: $senha_email
 url_wetty: $url_wetty
 link_form_feedback: $link_form_feedback
 tipo_workshop: $tipo_workshop
+etherpad_url: $etherpad_url
 salvo: true
 ";
 
@@ -149,6 +151,7 @@ $JsonGCE = json_decode(file_get_contents("/etc/ansible/workshop-stuff/conteudo_j
 if(!isset($Vars['salvo'])) {
 	$Vars['project_id'] = $JsonGCE->project_id;
 	$Vars['service_account_email'] = $JsonGCE->client_email;
+	$Vars['etherpad_url'] = getenv("ETHERPAD_URL");
 }
 
 $cluster_openshift_env = getenv("CLUSTER_OPENSHIFT");
@@ -324,6 +327,14 @@ if($wetty_url_env != "" and !isset($Vars['salvo'])) {
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="url_wetty" name="url_wetty" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text"  value="<?php echo $Vars['url_wetty'];?>">
+                        </div>
+                      </div>
+
+			<div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Url Etherpad<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="etherpad_url" name="etherpad_url" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text"  value="<?php echo $Vars['etherpad_url'];?>">
                         </div>
                       </div>
 
