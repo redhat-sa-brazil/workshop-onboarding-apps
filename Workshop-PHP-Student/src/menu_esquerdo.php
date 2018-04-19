@@ -1,4 +1,12 @@
             <!-- sidebar menu -->
+		<?php
+		$url_etherpad = getenv("ETHERPAD_URL");
+		if($url_etherpad != "") {
+			$url_etherpad = "http://$url_etherpad/p/".getenv("NOME_WORKSHOP");
+		} else {
+			$url_etherpad = "https://pad.apps.paas.rhbrlab.com/p/".getenv("NOME_WORKSHOP");
+		}
+		?>
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>Workshop OCP</h3>
@@ -11,7 +19,7 @@
                   <li><a><i class="fa fa-wrench"></i> Ferramentas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="instancia.php">Acesso a sua instancia</a></li>
-                      <li><a href="https://pad.apps.paas.rhbrlab.com/p/<?php echo getenv("NOME_WORKSHOP");?>" target="_blank">Etherpad</a></li>
+                      <li><a href="<?php echo $url_etherpad;?>" target="_blank">Etherpad</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-cube"></i> Workshop Openshift <span class="fa fa-chevron-down"></span></a>
