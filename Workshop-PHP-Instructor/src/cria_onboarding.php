@@ -64,6 +64,7 @@
 	if(!$Instructor->VerificaSeAlunoJaExiste($Student)) {
 	$Instructor->CadastraAluno($Student);
 	$user = str_replace(".", "-", $user);
+	$user = str_replace("_", "-", $user);
 
 // =================================
 // Carrega configuracoes salvas
