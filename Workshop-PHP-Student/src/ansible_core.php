@@ -644,6 +644,18 @@ cd /workshop</pre>
 </div>
 </div>
 </div>
+
+<div class="sect4">
+<h5 id="_criando_invent_rio">Testando acesso as instancias</h5>
+<div id="__asciidoctor-preview-976__" class="literalblock">
+<div class="content">
+<pre>ssh -i chave <?php echo getenv("ALUNO");?>-server1</pre>
+<pre>ssh -i chave <?php echo getenv("ALUNO");?>-server2</pre>
+</div>
+</div>
+</div>
+
+
 <div class="sect3">
 <h4 id="_lab03_m_dulos_para_execu_o_de_comandos">LAB03 - Módulos para execução de comandos</h4>
 <div class="sect4">
