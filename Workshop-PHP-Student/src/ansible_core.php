@@ -557,7 +557,7 @@ require_once("top_navigation.php");
 <td class="tableblock halign-left valign-top"><p class="tableblock">Função</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ansible-core</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">workshop</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&lt;chave privada&gt;</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">usuario que roda playbooks</p></td>
 </tr>
@@ -613,11 +613,11 @@ sudo yum install -y ansible  <i class="conum" data-value="2"></i><b>(2)</b></pre
 <p>Neste laborátorio iremos criar um inventário para nosso laboratório</p>
 </div>
 <div class="sect4">
-<h5 id="_usando_usuario_ansible_core">Usando usuario ansible-core</h5>
+<h5 id="_usando_usuario_ansible_core">Usando usuario workshop</h5>
 <div id="__asciidoctor-preview-956__" class="literalblock">
 <div class="content">
-<pre>sudo su - ansible-core
-cd /ansible-core</pre>
+<pre>sudo su - workshop
+cd /workshop</pre>
 </div>
 </div>
 </div>
@@ -634,8 +634,8 @@ cd /ansible-core</pre>
 <div id="__asciidoctor-preview-1006__" class="literalblock">
 <div class="content">
 <pre>[all:vars]
- ansible_ssh_user=ansible-core
- ansible_ssh_private_key_file=/ansible-core/chave
+ ansible_ssh_user=workshop
+ ansible_ssh_private_key_file=/workshop/chave
 [web]
 <?php echo getenv("ALUNO");?>-server1
 [banco]
@@ -668,7 +668,7 @@ cd /ansible-core</pre>
 <h5 id="_resolve_problema_de_repositorio_remoto">Resolve problema de repositorio remoto</h5>
 <div id="__asciidoctor-preview-1118__" class="literalblock">
 <div class="content">
-<pre>ansible-playbook /ansible-core/fix_repo_local.yml -i inventario.ini</pre>
+<pre>ansible-playbook /workshop/fix_repo_local.yml -i inventario.ini</pre>
 </div>
 </div>
 </div>
@@ -762,7 +762,7 @@ cd /ansible-core</pre>
 <h5 id="_criando_o_primeiro_playbook">Criando o primeiro playbook</h5>
 <div id="__asciidoctor-preview-1450__" class="literalblock">
 <div class="content">
-<pre>vi /ansible-core/primeiroplaybook.yaml <i class="conum" data-value="1"></i><b>(1)</b></pre>
+<pre>vi /workshop/primeiroplaybook.yaml <i class="conum" data-value="1"></i><b>(1)</b></pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-1458__" class="colist arabic">
@@ -783,7 +783,7 @@ cd /ansible-core</pre>
   hosts: web <i class="conum" data-value="1"></i><b>(1)</b>
   become: yes
   vars:
-  remote_user: ansible-core <i class="conum" data-value="2"></i><b>(2)</b>
+  remote_user: workshop <i class="conum" data-value="2"></i><b>(2)</b>
 
   tasks:
   - name: Instala a ferramenta net-tools <i class="conum" data-value="3"></i><b>(3)</b>
@@ -848,7 +848,7 @@ cd /ansible-core</pre>
 </div>
 <div id="__asciidoctor-preview-1660__" class="literalblock">
 <div class="content">
-<pre>vi /ansible-core/segundoplaybook.yaml</pre>
+<pre>vi /workshop/segundoplaybook.yaml</pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-1668__" class="listingblock">
@@ -856,7 +856,7 @@ cd /ansible-core</pre>
 <pre>---
 - name: Segundo Playbook - trabalhando com loop
   hosts: web
-  remote_user: ansible-core
+  remote_user: workshop
   become: yes
   gather_facts: no
   vars:
@@ -892,7 +892,7 @@ cd /ansible-core</pre>
 <h5 id="_exemplo_de_um_playbook_que_utiliza_handlers_para_gerenciar_o_servi_o_do_apache">Exemplo de um playbook que utiliza handlers para gerenciar o serviço do Apache</h5>
 <div id="__asciidoctor-preview-1764__" class="literalblock">
 <div class="content">
-<pre>vi /ansible-core/terceiroplaybook.yaml</pre>
+<pre>vi /workshop/terceiroplaybook.yaml</pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-1772__" class="listingblock">
@@ -900,7 +900,7 @@ cd /ansible-core</pre>
 <pre>---
 - name: Trabalhando com Handlers
   hosts: web
-  remote_user: ansible-core
+  remote_user: workshop
   become: yes
 
   tasks:
@@ -942,7 +942,7 @@ cd /ansible-core</pre>
 </div>
 <div id="__asciidoctor-preview-1832__" class="literalblock">
 <div class="content">
-<pre>vi /ansible-core/quartoplaybook.yaml</pre>
+<pre>vi /workshop/quartoplaybook.yaml</pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-1838__" class="listingblock">
@@ -950,7 +950,7 @@ cd /ansible-core</pre>
 <pre>---
 - name: Trabalhando com tags
   hosts: web
-  remote_user: ansible-core
+  remote_user: workshop
   become: yes
 
   tasks:
@@ -1027,7 +1027,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 </div>
 <div id="__asciidoctor-preview-1976__" class="literalblock">
 <div class="content">
-<pre>vi /ansible-core/quintoplaybook.yaml</pre>
+<pre>vi /workshop/quintoplaybook.yaml</pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-1984__" class="listingblock">
@@ -1035,7 +1035,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com Condicional
   hosts: web
-  remote_user: ansible-core
+  remote_user: workshop
   become: yes
 
   tasks:
@@ -1059,7 +1059,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <h4 id="_lab08_trabalhando_com_com_sa_da_de_comandos">LAB08 - Trabalhando com com saída de comandos</h4>
 <div id="__asciidoctor-preview-2030__" class="literalblock">
 <div class="content">
-<pre>vi /ansible-core/sextoplaybook.yaml</pre>
+<pre>vi /workshop/sextoplaybook.yaml</pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-2038__" class="listingblock">
@@ -1067,7 +1067,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com  saida de comandos
   hosts: web
-  remote_user: ansible-core
+  remote_user: workshop
   become: yes
 
   tasks:
@@ -1094,7 +1094,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <h4 id="_lab09_ignorando_erros">LAB09 - Ignorando erros</h4>
 <div id="__asciidoctor-preview-2100__" class="literalblock">
 <div class="content">
-<pre>vi /ansible-core/setimoplaybook.yaml</pre>
+<pre>vi /workshop/setimoplaybook.yaml</pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-2108__" class="listingblock">
@@ -1102,7 +1102,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Ignorando errors
   hosts: web
-  remote_user: ansible-core
+  remote_user: workshop
   become: yes
 
   tasks:
@@ -1131,7 +1131,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 </div>
 <div id="__asciidoctor-preview-2156__" class="literalblock">
 <div class="content">
-<pre>vi /ansible-core/oitavoplaybook.yaml</pre>
+<pre>vi /workshop/oitavoplaybook.yaml</pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-2164__" class="listingblock">
@@ -1139,7 +1139,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Tratando arquivos Selinux e HTTPD
   hosts: web
-  remote_user: ansible-core
+  remote_user: workshop
   become: yes
 
   tasks:
@@ -1187,7 +1187,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <h5 id="_exemplo_no_uso_de_vari_veis_no_ansible">Exemplo no uso de variáveis no Ansible</h5>
 <div id="__asciidoctor-preview-2264__" class="literalblock">
 <div class="content">
-<pre>vi /ansible-core/nonoplaybook.yaml</pre>
+<pre>vi /workshop/nonoplaybook.yaml</pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-2272__" class="listingblock">
@@ -1195,7 +1195,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com variaveis
   hosts: web
-  remote_user: ansible-core
+  remote_user: workshop
   become: yes
 
   tasks:
@@ -1235,7 +1235,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 </div>
 <div id="__asciidoctor-preview-2332__" class="literalblock">
 <div class="content">
-<pre>vi /ansible-core/decimoplaybook.yaml</pre>
+<pre>vi /workshop/decimoplaybook.yaml</pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-2340__" class="listingblock">
@@ -1243,7 +1243,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com template jinja2
   hosts: web
-  remote_user: ansible-core
+  remote_user: workshop
   become: yes
   vars: <i class="conum" data-value="4"></i><b>(4)</b>
     http_port: 80
@@ -1255,7 +1255,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
     yum: name=httpd state=latest <i class="conum" data-value="3"></i><b>(3)</b>
 
   - name: Substituia o arquivo de configuração httd.conf <i class="conum" data-value="2"></i><b>(2)</b>
-    template: src=/ansible-core/templates/httpd.conf.j2 dest=/etc/httpd/httpd.conf <i class="conum" data-value="1"></i><b>(1)</b>
+    template: src=/workshop/templates/httpd.conf.j2 dest=/etc/httpd/httpd.conf <i class="conum" data-value="1"></i><b>(1)</b>
     notify:
     - restart apache
 
