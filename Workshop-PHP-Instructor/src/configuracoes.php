@@ -65,7 +65,9 @@ $Db->m_close();
 $config_yaml = "/etc/ansible/playbooks/workshop-onboarding/config.yml";
 $config_yaml_pv = "/workshop-pv/config.yml";
 $arquivo_json = "/etc/ansible/playbooks/gce.json";
+$arquivo_json_pv = "/workshop-pv/gce.json";
 $chave_ssh = "/etc/ansible/playbooks/ssh_gce";
+$chave_ssh_pv = "/workshop-pv/ssh_gce";
 
 
 // =================================
