@@ -47,6 +47,7 @@ require_once("menu_esquerdo_completo.php");
 require_once("top_navigation.php");
 ?>
         <!-- page content -->
+        <div class="right_col" role="main">
    <?php
         $instancia = $_GET['instancia'];
 	$instancia = str_replace(";", "", $instancia);
@@ -55,6 +56,8 @@ require_once("top_navigation.php");
 
 	$arquivo_cmd = "/tmp/$instancia-cmd.txt";
 	$comando = chop(file_get_contents($arquivo_cmd));
+	$comando = str_replace("instructor_student_instance_ansible.yml", "instructor_student_instance_ansible_remove.yml", $comando);
+	$comandp = str_replace("instructor_student_instance_openshift.yml", "instructor_student_instance_openshift_remove.yml", $comando);
 //	echo $comando;
         $outputfile = "/tmp/$instancia-log.txt";
         $pidfile = "/tmp/$instancia-pid.txt";
@@ -72,25 +75,7 @@ require_once("top_navigation.php");
         <?php
         ?>
 
- <div class="col-md-6">
-              <div class="x_panel">
-<div class="x_content bs-example-popovers">
-
-                  <div class="alert alert-success alert-dismissible fade in" role="alert">
-                    <strong><?php echo $msg;?></strong>
-                  <a href="instancias.php"><button type="button" class="btn btn-primary" >Comando reagendado. Clique para voltar.</button></a>
-                  </div>
-		
-                </div>
-
-
 </div>
-
-</div>
-</div>
-
-
-
         <!-- /page content -->
 
         <!-- footer content -->
