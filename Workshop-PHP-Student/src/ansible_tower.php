@@ -485,9 +485,9 @@ require_once("top_navigation.php");
 <div class="sect3">
 <h4 id="_lab01_acessando_o_tower">LAB01 - Acessando o Tower</h4>
 <div id="__asciidoctor-preview-2474__" class="paragraph">
-<p>Acesse: <a href="<?php echo getenv("TOWER");?>" class="bare"><button type="button" class="btn btn-danger btn-xs"><?php echo getenv("TOWER");?></button></a>
+<p>Acesse: <a href="https://<?php echo getenv("TOWER");?>" class="bare"><button type="button" class="btn btn-danger btn-xs">https://<?php echo getenv("TOWER");?></button></a>
 <br>
-Login: <?php echo getenv("ALUNO");?>
+Login: <?php echo getenv("ALUNO");?><br>
 Senha: redhat</p>
 </div>
 <div id="__asciidoctor-preview-2480__" class="imageblock">
