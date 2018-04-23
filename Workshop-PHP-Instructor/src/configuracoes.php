@@ -154,7 +154,7 @@ salvo: true
 // =================================
 // Carrega configuracoes salvas
 // =================================
-if(file_exists($config_yaml_pv) {
+if(file_exists($config_yaml_pv)) {
 	$Matriz = file("$config_yaml_pv");
 } else {
 	$Matriz = file("$config_yaml");
