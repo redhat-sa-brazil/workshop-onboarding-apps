@@ -19,6 +19,7 @@
                       <li><a href="respostas_rapidas.php">Mostrar Resultados Perguntas</a></li>
                       <li><a href="meuworkshop.php" target="blank">Self Service Alunos</a></li>
                       <li><a href="instancias_alunos.php">Instancias Alunos</a></li>
+                      <li><a href="sorteiofuse.php">Sorteio</a></li>
                     </ul>
                   </li>
 	

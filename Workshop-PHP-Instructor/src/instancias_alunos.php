@@ -152,6 +152,8 @@ while (false !== ($entry = $d->read())) {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="rerun.php?instancia=<?php echo $nome_instancia;?>">Roda Playbook Novamente</a>
+                          <li><a href="remove.php?instancia=<?php echo $nome_instancia;?>">Remove todas as instancias do aluno</a>
+
                           </li>
                           </li>
                         </ul>

@@ -47,6 +47,8 @@ require_once("menu_esquerdo_completo.php");
 require_once("top_navigation.php");
 ?>
         <!-- page content -->
+<div class="right_col" role="main">
+
    <?php
         $instancia = $_GET['instancia'];
 	$instancia = str_replace(";", "", $instancia);
@@ -78,7 +80,7 @@ require_once("top_navigation.php");
 
                   <div class="alert alert-success alert-dismissible fade in" role="alert">
                     <strong><?php echo $msg;?></strong>
-                  <a href="instancias.php"><button type="button" class="btn btn-primary" >Comando reagendado. Clique para voltar.</button></a>
+                  <a href="instancias_alunos.php"><button type="button" class="btn btn-primary" >Comando reagendado. Clique para voltar.</button></a>
                   </div>
 		
                 </div>
