@@ -171,11 +171,22 @@ for($x=0;$x<sizeof($Matriz);$x++) {
         	$Vars[$chave] = $valor;
 	}
 }
+if(file_exists($chave_ssh_pv)) {
+	$conteudo_chave_ssh = file_get_contents("$chave_ssh_pv");
+} else {
+	$conteudo_chave_ssh = file_get_contents("$chave_ssh");
+}
+if(file_exists($arquivo_json_pv)) {
+	$conteudo_json_gce = file_get_contents("$arquivo_json_pv");
+} else {
+	$conteudo_json_gce = file_get_contents("$arquivo_json");
+}
 
-$conteudo_chave_ssh = file_get_contents("$chave_ssh");
-$conteudo_json_gce = file_get_contents("$arquivo_json");
-
-$JsonGCE = json_decode(file_get_contents("/etc/ansible/workshop-stuff/conteudo_json_gce.json"));
+if(file_exists($arquivo_json_pv)) {
+	$JsonGCE = json_decode(file_get_contents("$arquivo_json_pv"));
+} else { 
+	$JsonGCE = json_decode(file_get_contents("/etc/ansible/workshop-stuff/conteudo_json_gce.json"));
+}
 
 if(!isset($Vars['salvo'])) {
 	$Vars['project_id'] = $JsonGCE->project_id;
