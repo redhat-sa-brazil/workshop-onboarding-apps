@@ -63,6 +63,7 @@ $Db->m_close();
 // Variaveis de arquivo
 // =================================
 $config_yaml = "/etc/ansible/playbooks/workshop-onboarding/config.yml";
+$config_yaml_pv = "/etc/ansible/playbooks/persistente/config.yml";
 $arquivo_json = "/etc/ansible/playbooks/gce.json";
 $chave_ssh = "/etc/ansible/playbooks/ssh_gce";
 
@@ -81,6 +82,20 @@ if(isset($_POST['salvar'])) {
 	fclose($fpj);
 
         $fps = fopen("$chave_ssh", "w+");
+        $conts = $_POST['chave_ssh'];
+        fputs($fps, "$conts");
+        fclose($fps);
+
+	// =============================
+	// Salvando conteudo Persistente
+	// =============================
+
+        $fpj = fopen("$arquivo_json_pv", "w+");
+        $contj = $_POST['json_gce'];
+        fputs($fpj, "$contj");
+        fclose($fpj);
+
+        $fps = fopen("$chave_ssh_pv", "w+");
         $conts = $_POST['chave_ssh'];
         fputs($fps, "$conts");
         fclose($fps);
@@ -122,16 +137,28 @@ etherpad_url: $etherpad_url
 salvo: true
 ";
 
+	// Salvando em efemero
 	$fp = fopen("$config_yaml", "w+");
 	fputs($fp, $conteudo);
 	fclose($fp);
+
+
+	// Salvando em persistente
+        $fp = fopen("$config_yaml_pv", "w+");
+        fputs($fp, $conteudo);
+        fclose($fp);
+
 
 }
 
 // =================================
 // Carrega configuracoes salvas
 // =================================
-$Matriz = file("$config_yaml");
+if(file_exists($config_yaml_pv) {
+	$Matriz = file("$config_yaml_pv");
+} else {
+	$Matriz = file("$config_yaml");
+}
 $Vars = array();
 for($x=0;$x<sizeof($Matriz);$x++) {
         $linha = $Matriz[$x];
@@ -154,8 +181,8 @@ if(!isset($Vars['salvo'])) {
 	$Vars['etherpad_url'] = getenv("ETHERPAD_URL");
 	$Vars['nome_projeto_openshift'] = "workshop-alunos";
 	$Vars['nome_workshop'] = "workshop1";
-	$Vars['url_wetty'] = "-";
-	$Vars['endereco_tower'] = "-";
+	$Vars['url_wetty'] = "none";
+	$Vars['endereco_tower'] = "none";
 	
 }
 
