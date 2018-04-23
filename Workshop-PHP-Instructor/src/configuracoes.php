@@ -63,7 +63,7 @@ $Db->m_close();
 // Variaveis de arquivo
 // =================================
 $config_yaml = "/etc/ansible/playbooks/workshop-onboarding/config.yml";
-$config_yaml_pv = "/etc/ansible/playbooks/persistente/config.yml";
+$config_yaml_pv = "/workshop-pv/config.yml";
 $arquivo_json = "/etc/ansible/playbooks/gce.json";
 $chave_ssh = "/etc/ansible/playbooks/ssh_gce";
 
