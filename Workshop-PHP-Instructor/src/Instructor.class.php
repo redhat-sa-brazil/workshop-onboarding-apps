@@ -59,19 +59,9 @@
                         $this->ObtemConfiguracoes();
                         
                         
-                        $to = $email;
-
-                        $subject = 'Workshop/Test-Drive Finalizado';
-
-                        $headers = "From: " . $this->email_remetente . "\r\n";
-                        $headers .= "Reply-To: ". $this->email_remetente . "\r\n";
-                        $headers .= "MIME-Version: 1.0\r\n";
-                        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-                        $message = file_get_contents("/var/www/html/template_email_final.html");
-
-
-                        mail($to, $subject, $message, $headers);
+                        
+                        
+                      
                         
 		}
                 
@@ -150,6 +140,24 @@
                     
                     $this->email_remetente = $Vars['email_remetente'];
 
+                }
+                
+                public function EnviaEmailFinalAnsible($email_aluno) {
+                    /*
+                    if(intval($Vars['tipo_workshop']) == "1") {
+                        $comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
+                    }
+                    if(intval($Vars['tipo_workshop']) == "2") {
+                        $comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_ansible.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
+                    }
+                     * 
+                     */
+                    $comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_email.yml -e \"email_aluno=$email_aluno\"";
+                    $rand = rand();
+                    $outputfile = "/tmp/$rand-log.txt";
+                    $pidfile = "/tmp/$rand-pid.txt";
+                    $commandfile = "/tmp/$rand-cmd.txt";
+                    exec(sprintf("%s > %s 2>&1 & echo $! >> %s", $comando, $outputfile, $pidfile));
                 }
                 
 	}
