@@ -41,20 +41,7 @@ if(!isset($_SESSION['sessao'])) {
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
-
-  <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-<?php 
-require_once("menu_esquerdo_completo.php");
-?>
-
-<?php
-require_once("top_navigation.php");
-?>
-        <!-- page content -->
-
-<?php
+  <?php
 // =================================
 // Carrega Alunos
 // =================================
@@ -68,6 +55,8 @@ if(!isset($_POST['sortear'])) {
 		$alunos .= $x['nome']."(".$x['empresa'].")\n";
 	}
 	$Db->m_close();
+        $onload = "";
+        $sorteado = "";
 } else {
 	// Gera Matriz para sorteio...
 	$Matriz = explode("\n", $_POST['alunos']);	
@@ -85,6 +74,40 @@ if(!isset($_POST['sortear'])) {
 // Carrega configuracoes salvas
 // =================================
 ?>
+<?php
+if(isset($_POST['sortear'])) {
+	require_once "Sorteio.class.php";
+	$Sorteio = new Sorteio;
+	$Sorteados = json_decode($Sorteio->Sorteia($Malunos), true);
+	$aluno = "";
+	for($x=0;$x<sizeof($Sorteados['alunos']);$x++) {
+		$aluno = $Sorteados['alunos'][$x]['nome'];
+		if($Sorteados['alunos'][$x]['sorteado'] == "true") {
+			$msg = "SORTEADO!! <h2>$aluno</h2><br>";
+                        $onload = " onLoad=\"javascript:AbreModal('".$aluno."')\"";
+                        $sorteado = $aluno;
+		} else {
+			$alunos .= $aluno;
+		}
+	}
+        
+        
+	
+}
+?>
+  <body class="nav-md" <?php echo $onload;?>>
+    <div class="container body">
+      <div class="main_container">
+<?php 
+require_once("menu_esquerdo_completo.php");
+?>
+
+<?php
+require_once("top_navigation.php");
+?>
+        <!-- page content -->
+
+
 
 <div class="right_col" role="main">
           <div class="">
@@ -96,23 +119,7 @@ if(!isset($_POST['sortear'])) {
             </div>
             <div class="clearfix"></div>
 
-<?php
-if(isset($_POST['sortear'])) {
-	require_once "Sorteio.class.php";
-	$Sorteio = new Sorteio;
-	$Sorteados = json_decode($Sorteio->Sorteia($Malunos), true);
-	$aluno = "";
-	for($x=0;$x<sizeof($Sorteados['alunos']);$x++) {
-		$aluno = $Sorteados['alunos'][$x]['nome'];
-		if($Sorteados['alunos'][$x]['sorteado'] == "true") {
-			echo "SORTEADO!! <h2>$aluno</h2><br>";
-		} else {
-			$alunos .= $aluno;
-		}
-	}
-	
-}
-?>
+<?php echo $msg;?>
 
 
 <div class="row">
@@ -194,23 +201,22 @@ if(isset($_POST['sortear'])) {
                   <!-- Small modal -->
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
 
-                  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="modalpequena">
                     <div class="modal-dialog modal-sm">
                       <div class="modal-content">
 
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                           </button>
-                          <h4 class="modal-title" id="myModalLabel2">Modal title</h4>
+                          <h4 class="modal-title" id="myModalLabel2">Parabens!</h4>
                         </div>
                         <div class="modal-body">
-                          <h4>Text in a modal</h4>
-                          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                          <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                          <h4>Sorteado da vez:</h4>
+                          <p><?php echo $sorteado;?></p>
+                          
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
 
                       </div>
@@ -276,6 +282,13 @@ if(isset($_POST['sortear'])) {
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    
+    <script>
+        function AbreModal(aluno) {
+            $('#modalpequena').modal('show');
+            
+        }
+        </script>
 	
   </body>
 </html>
