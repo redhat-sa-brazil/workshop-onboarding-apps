@@ -4,7 +4,6 @@ if(!isset($_SESSION['sessao'])) {
         exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
