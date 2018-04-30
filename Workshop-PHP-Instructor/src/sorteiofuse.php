@@ -210,9 +210,7 @@ require_once("top_navigation.php");
                           <h4 class="modal-title" id="myModalLabel2">Parabens!</h4>
                         </div>
                         <div class="modal-body">
-                          <h4>Sorteado da vez:</h4>
-                          <p><?php echo $sorteado;?></p>
-                          
+                          <h4><?php echo $sorteado;?></h4>                          
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
