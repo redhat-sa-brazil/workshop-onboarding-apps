@@ -20,6 +20,7 @@
                       <li><a href="meuworkshop.php" target="blank">Self Service Alunos</a></li>
                       <li><a href="instancias_alunos.php">Instancias Alunos</a></li>
                       <li><a href="sorteiofuse.php">Sorteio</a></li>
+                      <li><a href="finaliza_workshop.php">Operações Alunos</a></li>
                     </ul>
                   </li>
 	
