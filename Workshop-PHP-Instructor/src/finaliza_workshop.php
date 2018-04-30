@@ -162,7 +162,7 @@ require_once("top_navigation.php");
                           <h4 class="modal-title" id="myModalLabel2">Email enviado!</h4>
                         </div>
                         <div class="modal-body">
-                          <h4>Email enviado para aluno!</h4>                          
+                          <h4>Email enviado para aluno(s)!</h4>                          
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -249,7 +249,10 @@ require_once("top_navigation.php");
               });
         }
         function EnviaEmailTodos() {
-            alert('Envia email todos');
+            $.get( "ajax_envia_emails.php?envia_email_todos=S", function( data ) {
+                $('#modalpequenax').modal('show');
+              });
+            
         }
         
         

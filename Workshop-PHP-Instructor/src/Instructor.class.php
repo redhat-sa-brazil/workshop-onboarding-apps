@@ -72,21 +72,7 @@
                         $this->ObtemConfiguracoes();
                         while($x=$Db->m_fetch_array($rs)) {
                             $email = $x['email'];
-
-
-                            $to = $email;
-
-                            $subject = 'Workshop/Test-Drive Finalizado';
-
-                            $headers = "From: " . $this->email_remetente . "\r\n";
-                            $headers .= "Reply-To: ". $this->email_remetente . "\r\n";
-                            $headers .= "MIME-Version: 1.0\r\n";
-                            $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-                            $message = file_get_contents("/var/www/html/template_email_final.html");
-
-
-                            mail($to, $subject, $message, $headers);
+                            $this->EnviaEmailFinalAnsible($email);
                         }
                         
 		}
