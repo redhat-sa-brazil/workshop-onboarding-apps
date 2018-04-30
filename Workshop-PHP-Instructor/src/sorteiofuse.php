@@ -84,7 +84,7 @@ if(isset($_POST['sortear'])) {
 		$aluno = $Sorteados['alunos'][$x]['nome'];
 		if($Sorteados['alunos'][$x]['sorteado'] == "true") {
 			$msg = "SORTEADO!! <h2>$aluno</h2><br>";
-                        $onload = " onLoad=\"javascript:AbreModal('".$aluno."')\"";
+                        $onload = " onLoad=\"AbreModal()\"";
                         $sorteado = $aluno;
 		} else {
 			$alunos .= $aluno;
@@ -216,7 +216,7 @@ require_once("top_navigation.php");
                           
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                         </div>
 
                       </div>
@@ -284,7 +284,7 @@ require_once("top_navigation.php");
     <script src="../build/js/custom.min.js"></script>
     
     <script>
-        function AbreModal(aluno) {
+        function AbreModal() {
             $('#modalpequena').modal('show');
             
         }
