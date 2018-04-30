@@ -1,6 +1,9 @@
 <?php
 	require_once "config.php";
 	class Instructor {
+            
+                public $email_remetente;
+                
 		public function ObtemAreas () {
 			$Db = new Db;
 			$qr = "select * from area";
@@ -47,5 +50,107 @@
                         $rs = $Db->m_query($qr);
 			return $Db->m_result($rs, 'contagem');
 		}
+                
+                public function EnviaEmailFinalAluno($id_student) {
+ 			$Db = new Db;
+                        $qr = "select email from student where id_student = '$id_student'";
+                        $rs = $Db->m_query($qr);
+			$email = $Db->m_result($rs, 'email');
+                        $this->ObtemConfiguracoes();
+                        
+                        
+                        $to = $email;
+
+                        $subject = 'Workshop/Test-Drive Finalizado';
+
+                        $headers = "From: " . $this->email_remetente . "\r\n";
+                        $headers .= "Reply-To: ". $this->email_remetente . "\r\n";
+                        $headers .= "MIME-Version: 1.0\r\n";
+                        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+                        $message = file_get_contents("/var/www/html/template_email_final.html");
+
+
+                        mail($to, $subject, $message, $headers);
+                        
+		}
+                
+                 public function EnviaEmailFinalTodosAlunos() {
+ 			$Db = new Db;
+                        $qr = "select email from student";
+                        $rs = $Db->m_query($qr);
+                        $this->ObtemConfiguracoes();
+                        while($x=$Db->m_fetch_array($rs)) {
+                            $email = $x['email'];
+
+
+                            $to = $email;
+
+                            $subject = 'Workshop/Test-Drive Finalizado';
+
+                            $headers = "From: " . $this->email_remetente . "\r\n";
+                            $headers .= "Reply-To: ". $this->email_remetente . "\r\n";
+                            $headers .= "MIME-Version: 1.0\r\n";
+                            $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+                            $message = file_get_contents("/var/www/html/template_email_final.html");
+
+
+                            mail($to, $subject, $message, $headers);
+                        }
+                        
+		}
+                
+                public function ObtemConfiguracoes() { 
+                    
+                    // =================================
+                    // Variaveis de arquivo
+                    // =================================
+                    $config_yaml = "/etc/ansible/playbooks/workshop-onboarding/config.yml";
+                    $config_yaml_pv = "/workshop-pv/config.yml";
+                    $arquivo_json = "/etc/ansible/playbooks/gce.json";
+                    $arquivo_json_pv = "/workshop-pv/gce.json";
+                    $chave_ssh = "/etc/ansible/playbooks/ssh_gce";
+                    $chave_ssh_pv = "/workshop-pv/ssh_gce";
+                    
+                    // =================================
+                    // Carrega configuracoes salvas
+                    // =================================
+                    if(file_exists($config_yaml_pv)) {
+                            $Matriz = file("$config_yaml_pv");
+                    } else {
+                            $Matriz = file("$config_yaml");
+                    }
+                    $Vars = array();
+                    for($x=0;$x<sizeof($Matriz);$x++) {
+                            $linha = $Matriz[$x];
+                            if(ereg(":", $linha)) {
+                                    $Sub = explode(": ", $linha);
+                                    $chave = $Sub[0];
+                                    $valor = $Sub[1];
+                                    $Vars[$chave] = $valor;
+                            }
+                    }
+                    if(file_exists($chave_ssh_pv)) {
+                            $conteudo_chave_ssh = file_get_contents("$chave_ssh_pv");
+                    } else {
+                            $conteudo_chave_ssh = file_get_contents("$chave_ssh");
+                    }
+                    if(file_exists($arquivo_json_pv)) {
+                            $conteudo_json_gce = file_get_contents("$arquivo_json_pv");
+                    } else {
+                            $conteudo_json_gce = file_get_contents("$arquivo_json");
+                    }
+
+                    if(file_exists($arquivo_json_pv)) {
+                            $JsonGCE = json_decode(file_get_contents("$arquivo_json_pv"));
+                    } else { 
+                            $JsonGCE = json_decode(file_get_contents("/etc/ansible/workshop-stuff/conteudo_json_gce.json"));
+                    }
+                    
+                    $this->email_remetente = $Vars['email_remetente'];
+
+                }
+                
 	}
 ?>

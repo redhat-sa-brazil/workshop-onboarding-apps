@@ -145,6 +145,33 @@ require_once("top_navigation.php");
             
 </div>
         <!-- /page content -->
+        
+        
+        <!-- modals -->
+                 
+
+                  <!-- Small modal -->
+
+                  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="modalpequenax">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title" id="myModalLabel2">Email enviado!</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h4>Email enviado para aluno!</h4>                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /modals -->
 
         <!-- footer content -->
         <footer>
@@ -217,11 +244,15 @@ require_once("top_navigation.php");
     
     <script>
         function EnviaEmailAluno(id_student) { 
-            alert(id_student);
+            $.get( "ajax_envia_emails.php?id_student="+id_student, function( data ) {
+                $('#modalpequenax').modal('show');
+              });
         }
         function EnviaEmailTodos() {
             alert('Envia email todos');
         }
+        
+        
         </script>
 	
   </body>
