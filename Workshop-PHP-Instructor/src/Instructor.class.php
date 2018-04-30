@@ -59,7 +59,7 @@
                         $this->ObtemConfiguracoes();
                         
                         
-                        
+                         $this->EnviaEmailFinalAnsible($email);
                         
                       
                         
