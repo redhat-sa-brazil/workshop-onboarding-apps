@@ -3,7 +3,6 @@ if(!isset($_SESSION['sessao'])) {
         header("Location: login.html");
         exit;
 }
-
 require_once "Question.class.php";
 $Question = new Question();
 if(isset($_POST['cadastrar'])) {
@@ -44,7 +43,7 @@ if(isset($_POST['excluir'])) {
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-	
+
     <!-- bootstrap-progressbar -->
     <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
@@ -95,6 +94,16 @@ require_once("top_navigation.php");
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+        <?php
+        if(isset($_GET['alterar']) or isset($_GET['excluir'])) {
+                $id_pergunta = intval($_GET['id_pergunta']);
+                $Objeto = BuscaPerguntaPorId($id_pergunta);
+                print_r($Objeto);
+
+                }
+        ?>
+
+
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="pergunta_rapida.php" method="post">
 
@@ -130,6 +139,7 @@ require_once("top_navigation.php");
                                                        if(isset($_GET['id_pergunta']) and isset($_GET['excluir'])) {
                                                   
                                                     ?>
+                        <input type=hidden name="id_pergunta" value="<?php echo $_GET['id_pergunta'];?>">
                           <button type="submit" name="excluir" class="btn btn-danger">Remover Pergunta</button>
                           
                                                    <?php
@@ -225,8 +235,8 @@ require_once("top_navigation.php");
                         </tbody>
                       </table>
                     </div>
-							
-						
+
+
                   </div>
                 </div>
               </div>
@@ -292,6 +302,6 @@ require_once("top_navigation.php");
             alert(id_pergunta);
         }
         </script>
-	
+
   </body>
 </html>

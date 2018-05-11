@@ -1,87 +1,51 @@
 <?php
-	require_once "config.php";
-	class Question {
+        require_once "config.php";
+        require_once "httpful.phar";
+        class Question {
              public $id_pergunta;
              public $pergunta;
              public $Mopcoes;
+                public $description;
+                public $options;
+                public function BuscaPerguntaPorId($id_pergunta) {
+                $endpoint = "http://questions-answers.workshop-apoio.svc.cluster.local:8080/rest/question/$id_pe
+r
+gunta";
+                 $response = \Httpful\Request::get($endpoint)                  // Build a PUT request...
+    ->sendsJson()                               // tell it we're sending (Content-Type) JSON...
+    ->body('{"json":"is awesome"}')             // attach a body/payload...
+    ->send();
+                return json_decode($response);
+                }
              
              public function CadastraPergunta($pergunta, $Mopcoes) {
-                 echo "Pergunta: $pergunta<br>";
-                 print_r($Mopcoes);
+                $endpoint = "http://questions-answers.workshop-apoio.svc.cluster.local:8080/rest/question";
+                $method = "POST";
+                $Objeto = new stdClass();
+                $Objeto->description = $pergunta;
+                $MOpcoes = array();
+                $cont=0;
+                for($x=0;$x<sizeof($Mopcoes);$x++) {
+                        $Opcao = new stdClass();
+                        $Opcao->description = $Mopcoes[$x];
+                        $MOpcoes[$cont++] = $Opcao;
+                }
+                $Objeto->options = $MOpcoes;
+                $Jsonobj = json_encode($Objeto);
+                print_r($Jsonobj);
+$response = \Httpful\Request::post($endpoint)                  // Build a PUT request...
+    ->sendsJson()                               // tell it we're sending (Content-Type) JSON...
+    ->body($Jsonobj)             // attach a body/payload...
+    ->send(); 
+
+                 //echo "Pergunta: $pergunta<br>";
+                 //print_r($Mopcoes);
              }
              
              public function BuscaPerguntas() {
-                 $json = '{
-    "_embedded": {
-        "question": [
-            {
-                "id": 1,
-                "description": "Qual sua cor favorita?",
-                "options": [
-                    {
-                        "id": 2,
-                        "description": "Vermelho"
-                    },
-                    {
-                        "id": 3,
-                        "description": "Azul"
-                    },
-                    {
-                        "id": 4,
-                        "description": "Amarelo"
-                    }
-                ],
-                "enabled": true,
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8080/rest/question/1"
-                    },
-                    "question": {
-                        "href": "http://localhost:8080/rest/question/1"
-                    }
-                }
-            },
-            {
-                "id": 5,
-                "description": "Você conhece docker?",
-                "options": [
-                    {
-                        "id": 6,
-                        "description": "Sim"
-                    },
-                    {
-                        "id": 7,
-                        "description": "Não"
-                    }
-                ],
-                "enabled": false,
-                "_links": {
-                    "self": {
-                        "href": "http://localhost:8080/rest/question/5"
-                    },
-                    "question": {
-                        "href": "http://localhost:8080/rest/question/5"
-                    }
-                }
-            }
-        ]
-    },
-    "_links": {
-        "self": {
-            "href": "http://localhost:8080/rest/question{?page,size,sort}",
-            "templated": true
-        },
-        "profile": {
-            "href": "http://localhost:8080/rest/profile/question"
-        }
-    },
-    "page": {
-        "size": 20,
-        "totalElements": 2,
-        "totalPages": 1,
-        "number": 0
-    }
-}';
+                $endpoint = "http://questions-answers.workshop-apoio.svc.cluster.local:8080/rest/question";
+                $method = "GET";
+                $json = \Httpful\Request::get($endpoint)->send();
                  $ObjetoJson = json_decode($json);
                  $MatrizPerguntas = $ObjetoJson->_embedded->question;
                  $MatrizFinal = array();
@@ -104,7 +68,11 @@
              }
              
              public function DeletaPergunta($id_pergunta) {
-                 echo "excluida!";
+               $endpoint = "http://questions-answers.workshop-apoio.svc.cluster.local:8080/rest/question/$id_pergunta";
+                 $response = \Httpful\Request::delete($endpoint)                  // Build a PUT request...
+    ->sendsJson()                               // tell it we're sending (Content-Type) JSON...
+    ->body('{"json":"is awesome"}')             // attach a body/payload...
+    ->send(); 
              }
-	}
+        }
 ?>
