@@ -95,12 +95,25 @@ require_once("top_navigation.php");
                   </div>
                   <div class="x_content">
         <?php
+        
         if(isset($_GET['alterar']) or isset($_GET['excluir'])) {
-                $id_pergunta = intval($_GET['id_pergunta']);
-                $Objeto = BuscaPerguntaPorId($id_pergunta);
-                print_r($Objeto);
-
-                }
+            $id_pergunta = intval($_GET['id_pergunta']);
+            $Objeto = $Question->BuscaPerguntaPorId($id_pergunta);
+            $value_pergunta = "value=\"$Objeto->description\"";
+            $string = "";
+            for($y=0;$y<sizeof($Objeto->options);$y++) {
+                $ObjetoDesc = $Objeto->options[$y];
+                $string .= $ObjetoDesc->description."\n";
+            }
+            $string = chop($string);
+            $value_opcoes = "$string";
+            
+            
+       } else {
+            $value_pergunta = "value=\"\"";
+            $value_opcoes = "";
+        }
+                
         ?>
 
 
@@ -111,7 +124,7 @@ require_once("top_navigation.php");
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Pergunta <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="pergunta" name="pergunta" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="pergunta" name="pergunta" required="required" class="form-control col-md-7 col-xs-12" <?php echo $value_pergunta;?>>
                         </div>
                       </div>
                       <div class="form-group">
@@ -119,7 +132,7 @@ require_once("top_navigation.php");
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <textarea id="opcoes" name="opcoes" rows=6 required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
-                            data-parsley-validation-threshold="10"></textarea>
+                            data-parsley-validation-threshold="10"><?php echo $value_opcoes;?></textarea>
 
                         </div>
                       </div>
@@ -129,7 +142,7 @@ require_once("top_navigation.php");
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="button">Cancelar</button>
+                            <a href="pergunta_rapida.php"><button class="btn btn-primary" type="button">Cancelar</button></a>
                                                   <?php
                                                   if(isset($_GET['id_pergunta']) and isset($_GET['alterar'])) {
                                                   ?>
@@ -210,10 +223,10 @@ require_once("top_navigation.php");
                         <tbody>
                           <?php
                           $Mperguntas = $Question->BuscaPerguntas();
-                          for($x=0;$x<sizeof($Mperguntas);$x++) {
-                                $id_pergunta = $Mperguntas[$x]['id_pergunta'];
-                                $pergunta = $Mperguntas[$x]['pergunta'];
-                                $respostas = $Mperguntas[$x]['respostas'];
+                          for($z=0;$z<sizeof($Mperguntas);$z++) {
+                                $id_pergunta = $Mperguntas[$z]['id_pergunta'];
+                                $pergunta = $Mperguntas[$z]['pergunta'];
+                                $respostas = $Mperguntas[$z]['respostas'];
                           ?>
 
                           <tr class="even pointer">

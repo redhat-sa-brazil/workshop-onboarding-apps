@@ -8,9 +8,7 @@
                 public $description;
                 public $options;
                 public function BuscaPerguntaPorId($id_pergunta) {
-                $endpoint = "http://questions-answers.workshop-apoio.svc.cluster.local:8080/rest/question/$id_pe
-r
-gunta";
+                $endpoint = "http://questions-answers.workshop-apoio.svc.cluster.local:8080/rest/question/$id_pergunta";
                  $response = \Httpful\Request::get($endpoint)                  // Build a PUT request...
     ->sendsJson()                               // tell it we're sending (Content-Type) JSON...
     ->body('{"json":"is awesome"}')             // attach a body/payload...
@@ -25,14 +23,14 @@ gunta";
                 $Objeto->description = $pergunta;
                 $MOpcoes = array();
                 $cont=0;
-                for($x=0;$x<sizeof($Mopcoes);$x++) {
+                for($y=0;$y<sizeof($Mopcoes);$y++) {
                         $Opcao = new stdClass();
-                        $Opcao->description = $Mopcoes[$x];
+                        $Opcao->description = $Mopcoes[$y];
                         $MOpcoes[$cont++] = $Opcao;
                 }
                 $Objeto->options = $MOpcoes;
                 $Jsonobj = json_encode($Objeto);
-                print_r($Jsonobj);
+               // print_r($Jsonobj);
 $response = \Httpful\Request::post($endpoint)                  // Build a PUT request...
     ->sendsJson()                               // tell it we're sending (Content-Type) JSON...
     ->body($Jsonobj)             // attach a body/payload...
@@ -64,7 +62,24 @@ $response = \Httpful\Request::post($endpoint)                  // Build a PUT re
              }
              
              public function AlteraPergunta($id_pergunta, $pergunta, $Mopcoes) {
-                 echo "alterada!";
+                $endpoint = "http://questions-answers.workshop-apoio.svc.cluster.local:8080/rest/question/$id_pergunta";
+                $method = "PUT";
+                $Objeto = new stdClass();
+                $Objeto->description = $pergunta;
+                $MOpcoes = array();
+                $cont=0;
+                for($y=0;$y<sizeof($Mopcoes);$y++) {
+                        $Opcao = new stdClass();
+                        $Opcao->description = $Mopcoes[$y];
+                        $MOpcoes[$cont++] = $Opcao;
+                }
+                $Objeto->options = $MOpcoes;
+                $Jsonobj = json_encode($Objeto);
+               // print_r($Jsonobj);
+$response = \Httpful\Request::put($endpoint)                  // Build a PUT request...
+    ->sendsJson()                               // tell it we're sending (Content-Type) JSON...
+    ->body($Jsonobj)             // attach a body/payload...
+    ->send(); 
              }
              
              public function DeletaPergunta($id_pergunta) {
