@@ -62,19 +62,24 @@
 
 
 	if(!$Instructor->VerificaSeAlunoJaExiste($Student)) {
-	$Instructor->CadastraAluno($Student);
+	$id_student = $Instructor->CadastraAluno($Student);
 	$user = str_replace(".", "-", $user);
 	$user = str_replace("_", "-", $user);
-
+  $userrhpds = "user".$id_student;
 // =================================
 // Carrega configuracoes salvas
 // =================================
 // =================================
 // Variaveis de arquivo
 // =================================
+
+
 $config_yaml = "/etc/ansible/playbooks/workshop-onboarding/config.yml";
+$config_yaml_pv = "/workshop-pv/config.yml";
 $arquivo_json = "/etc/ansible/playbooks/gce.json";
-$chave_ssh = "/etc/ansible/playbooks/ssh_gce";
+$arquivo_json_pv = "/workshop-pv/gce.json";
+$ssh_private_key = "/etc/ansible/playbooks/ssh";
+$ssh_private_key_pv = "/workshop-pv/ssh";
 
 
 $Matriz = file("$config_yaml");
@@ -89,11 +94,14 @@ for($x=0;$x<sizeof($Matriz);$x++) {
 	}
 }
 
+// Carrega do DB
+$InstructorDb = new Instructor;
+$InstructorDb->ObtemConfiguracoesDb();
 
-	if(intval($Vars['tipo_workshop']) == "1") {
+	if($InstructorDb->id_tipo_workshop == "1") {
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
 	}
-	if(intval($Vars['tipo_workshop']) == "2") {
+	if($InstructorDb->id_tipo_workshop  == "2") {
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_ansible.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
 	}
 

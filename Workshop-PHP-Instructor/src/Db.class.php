@@ -127,7 +127,7 @@ create table if not exists task_student (
 		
 		// ========= Tabela de armazenamento das configuracoes do sistema
 		$qr = "create table configuration (
-id_configuration int primary key not null,
+id_configuration int primary key not null auto_increment,
 gce_sa_email varchar(255),
 gce_project_id varchar(255),
 gce_json text,

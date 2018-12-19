@@ -6,5 +6,7 @@
 		public $empresa;
 		public $id_area;
 		public $id_student;
+
+		
 	}	
 ?>

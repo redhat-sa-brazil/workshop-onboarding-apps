@@ -21,11 +21,13 @@
 	public $nome_workshop;
 	public $url_ansible_tower;
 	public $url_wetty;
-	public $url_etherpa;
+	public $url_etherpad;
 	public $link_formulario_feedback;
         public $id_tipo_workshop;
         public $provider;
         public $Student;
+        public $project_id;
+        public $url_tower;
         
  
                 //public $email_remetente;
