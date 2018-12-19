@@ -41,7 +41,7 @@ require_once("top_navigation.php");
 ?>
         <!-- page content -->
         <div class="right_col" role="main">
-<a href="https://redhat-sa-brazil.gitbooks.io/workshop-openshift/content/parte2/parte-2-openshift-dev.html" target="_blank"><button type="button" class="btn btn-success btn-xs">Clique para acessar o Openshift Workshop-Dev Book</button></a>
+<a href="https://redhatbsb.gitbook.io/workshop-openshift" target="_blank"><button type="button" class="btn btn-success btn-xs">Clique para acessar o Openshift Workshop-Dev Book</button></a>
 </div>
         <!-- /page content -->
 
