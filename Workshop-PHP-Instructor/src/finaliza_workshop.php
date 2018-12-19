@@ -70,6 +70,7 @@ require_once("top_navigation.php");
                           </li>
                          
                         </ul>
+
                       </li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
@@ -115,6 +116,7 @@ require_once("top_navigation.php");
                           <td><?php echo $dthr_registro;?></td>
                           <td>
                               <button type="button" class="btn btn-warning" onclick="EnviaEmailAluno('<?php echo $id_student;?>')">Enviar Email Final Aluno</button>
+                              <a href="posiciona_aluno.php?id_student=<?php echo $id_student;?>"><button type="button" class="btn btn-warning">Posicionar Tarefa Aluno</button></a>
 
                           </td>
                         </tr>

@@ -1,8 +1,34 @@
 <?php
-	require_once "config.php";
+        require_once "config.php";
+        require_once "Student.class.php";
 	class Instructor {
-            
-                public $email_remetente;
+         public $gce_sa_email;
+	public $gce_project_id;
+	public $gce_json;
+	public $ssh_private_key;
+	public $aws_access_key;
+	public $aws_secret_key;
+	public $aws_vpc_network;
+	public $aws_subnet_id;
+	public $aws_security_group;
+	public $aws_key_name;
+	public $ssh_user;
+	public $cluster_openshift;
+	public $nome_projeto_openshift;
+	public $token_openshift;
+	public $email_remetente;
+	public $senha_email;
+	public $nome_workshop;
+	public $url_ansible_tower;
+	public $url_wetty;
+	public $url_etherpa;
+	public $link_formulario_feedback;
+        public $id_tipo_workshop;
+        public $provider;
+        public $Student;
+        
+ 
+                //public $email_remetente;
                 
 		public function ObtemAreas () {
 			$Db = new Db;
@@ -25,7 +51,11 @@
 			$id_area = $Student->id_area;
 			$email = $Student->email;
 			$qr = "insert into student set nome = '$nome', id_area = '$id_area', empresa = '$empresa', email = '$email', dthr_registro = now()";
-			$rs = $Db->m_query($qr);
+                        $rs = $Db->m_query($qr);
+                        $qrid = "select id_student from student where nome = '$nome' and id_area = '$id_area' and empresa = '$empresa' and email = '$email' order by id_student desc limit 1";
+                        $rsid = $Db->m_query($qrid);
+                        $Student->id_student = $Db->m_result($rs, 'id_student');
+                        $this->Student = $Student;
 			$Db->m_close();
 		}
 
@@ -145,6 +175,173 @@
                     $commandfile = "/tmp/$rand-cmd.txt";
                     exec(sprintf("%s > %s 2>&1 & echo $! >> %s", $comando, $outputfile, $pidfile));
                 }
+
+		public function SalvaConfigDb() {
+                        $Db = new Db;
+                        $qr = "select id_configuration from configuration";
+                        $rs = $Db->m_query($qr);
+                        if($Db->m_num_rows($rs) > 0) {
+                                $id_configuration = $Db->m_result($rs, 'id_configuration');
+                                $qr = "update configuration set
+                                gce_sa_email = '$this->gce_sa_email',
+                                provider = '$this->provider',
+gce_project_id = '$this->gce_project_id',
+gce_json = '$this->gce_json',
+ssh_private_key = '$this->ssh_private_key',
+aws_access_key = '$this->aws_access_key',
+aws_secret_key = '$this->aws_secret_key',
+aws_vpc_network = '$this->aws_vpc_network',
+aws_subnet_id = '$this->aws_subnet_id',
+aws_security_group = '$this->aws_security_group',
+aws_key_name = '$this->aws_key_name',
+ssh_user = '$this->ssh_user',
+cluster_openshift = '$this->cluster_openshift',
+nome_projeto_openshift = '$this->nome_projeto_openshift',
+token_openshift = '$this->token_openshift',
+email_remetente = '$this->email_remetente',
+senha_email = '$this->senha_email',
+nome_workshop = '$this->nome_workshop',
+url_ansible_tower = '$this->url_ansible_tower',
+url_wetty = '$this->url_wetty',
+url_etherpad = '$this->url_etherpad',
+link_formulario_feedback = '$this->link_formulario_feedback',
+id_tipo_workshop = '$this->id_tipo_workshop' where id_configuration = '$id_configuration'
+                                
+                                ";
+                        } else {
+                                $qr = "insert into configuration set
+                                gce_sa_email = '$this->gce_sa_email',
+                                provider = '$this->provider',
+gce_project_id = '$this->gce_project_id',
+gce_json = '$this->gce_json',
+ssh_private_key = '$this->ssh_private_key',
+aws_access_key = '$this->aws_access_key',
+aws_secret_key = '$this->aws_secret_key',
+aws_vpc_network = '$this->aws_vpc_network',
+aws_subnet_id = '$this->aws_subnet_id',
+aws_security_group = '$this->aws_security_group',
+aws_key_name = '$this->aws_key_name',
+ssh_user = '$this->ssh_user',
+cluster_openshift = '$this->cluster_openshift',
+nome_projeto_openshift = '$this->nome_projeto_openshift',
+token_openshift = '$this->token_openshift',
+email_remetente = '$this->email_remetente',
+senha_email = '$this->senha_email',
+nome_workshop = '$this->nome_workshop',
+url_ansible_tower = '$this->url_ansible_tower',
+url_wetty = '$this->url_wetty',
+url_etherpad = '$this->url_etherpad',
+link_formulario_feedback = '$this->link_formulario_feedback',
+id_tipo_workshop = '$this->id_tipo_workshop'";
+                        }
+                        $rs = $Db->m_query($qr);
+                        //echo $qr;
+                        $Db->m_close();
+		}
                 
+        public function ObtemConfiguracoesDb() {
+                $Db = new Db;
+                $qr = "select * from configuration";
+                $rs = $Db->m_query($qr);
+                if($Db->m_num_rows($rs) > 0) {
+                        while($x=$Db->m_fetch_array($rs)) {
+                        $this->gce_project_id = $x['gce_project_id'];
+  $this->gce_sa_email = $x['gce_sa_email'];
+  $this->gce_json = $x['gce_json'];
+  $this->provider = $x['provider'];
+  $this->ssh_private_key = $x['ssh_private_key'];
+  $this->aws_access_key = $x['aws_access_key'];
+  $this->aws_secret_key = $x['aws_secret_key'];
+  $this->aws_vpc_network = $x['aws_vpc_network'];
+  $this->aws_subnet_id = $x['aws_subnet_id'];
+  $this->aws_security_group = $x['aws_security_group'];
+  $this->aws_key_name = $x['aws_key_name'];
+  $this->ssh_user = $x['ssh_user'];
+  $this->cluster_openshift = $x['cluster_openshift'];
+  $this->nome_projeto_openshift = $x['nome_projeto_openshift'];
+  $this->token_openshift = $x['token_openshift'];
+  $this->email_remetente = $x['email_remetente'];
+  $this->senha_email = $x['senha_email'];
+  $this->nome_workshop = $x['nome_workshop'];
+  $this->url_ansible_tower = $x['url_ansible_tower'];
+  $this->url_wetty = $x['url_wetty'];
+  $this->url_etherpad = $x['url_etherpad'];
+  $this->link_formulario_feedback = $x['link_formulario_feedback'];
+  $this->id_tipo_workshop = $x['id_tipo_workshop'];
+                        }
+                }
+        }
+
+public function GeraConfigFiles() {
+        $this->ObtemConfiguracoesDb();
+        // =================================
+        // Variaveis de arquivo
+        // =================================
+        $config_yaml = "/etc/ansible/playbooks/workshop-onboarding/config.yml";
+        $config_yaml_pv = "/workshop-pv/config.yml";
+        $arquivo_json = "/etc/ansible/playbooks/gce.json";
+        $arquivo_json_pv = "/workshop-pv/gce.json";
+        $ssh_private_key = "/etc/ansible/playbooks/ssh";
+        $ssh_private_key_pv = "/workshop-pv/ssh";
+        $rand_name = substr(md5(microtime()), 0, 10);
+
+        // Gera conteudo json GCE
+        $fp = fopen("$arquivo_json", "w+");
+        fputs($fp, $this->gce_json);
+        fclose($fp);
+
+        // Gera conteudo chave ssh
+        $fp = fopen($ssh_private_key, "w+");
+        fputs($fp, $this->ssh_private_key);
+        fclose($fp);
+
+        // Gera config para ansible        
+        $string_arquivo = "
+        # ========================
+# Configuracoes essenciais
+# ========================
+email_remetente: $this->email_remetente
+nome_workshop: $this->nome_workshop
+provider: $this->provider
+chave_ssh: $ssh_private_key
+
+
+# ========================
+# Configuracoes GCE
+# ========================
+credentials_file: $arquivo_json
+usuario_ssh_gce: $this->ssh_user
+
+# ========================
+# Configuracoes AWS
+# ========================
+aws_access_key: $this->aws_access_key
+aws_secret_key: $this->aws_secret_key
+aws_vpc_network: $this->aws_vpc_network
+aws_subnet_id: $this->aws_subnet_id
+aws_security_group: $this->aws_security_group
+aws_key_name: $this->aws_key_name
+usuario_ssh_aws: $this->ssh_user
+
+id_instancia_aws: $rand_name
+
+# ========================
+# Configuracoes Opcionais
+# ========================
+project_id: $this->project_id
+service_account_email: $this->gce_sa_email
+cluster_openshift: $this->cluster_openshift
+token_openshift: $this->token_openshift
+nome_projeto_openshift: $this->nome_workshop
+endereco_tower: $this->url_tower
+url_wetty: $this->url_wetty
+link_form_feedback: $this->link_formulario_feedback
+        ";
+
+        $fp = fopen($config_yaml, "w+");
+        fputs($fp, $string_arquivo);
+        fclose($fp);
+}
+
 	}
 ?>

@@ -40,15 +40,7 @@
 require_once "config.php";
 $Instructor = new Instructor;
 $Mareas = $Instructor->ObtemAreas();
-$Matriz = file("/etc/ansible/playbooks/workshop-onboarding/config.yml");
-$Vars = array();
-for($x=0;$x<sizeof($Matriz);$x++) {
-	$linha = $Matriz[$x];
-        $Sub = explode(": ", $linha);
-	$chave = $Sub[0];
-	$valor = $Sub[1];
-        $Vars[$chave] = $valor;
-}
+
 ?>
 
 <div class="right_col" role="main">
