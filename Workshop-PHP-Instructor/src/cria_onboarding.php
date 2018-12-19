@@ -98,10 +98,10 @@ for($x=0;$x<sizeof($Matriz);$x++) {
 $InstructorDb = new Instructor;
 $InstructorDb->ObtemConfiguracoesDb();
 
-	if($InstructorDb->id_tipo_workshop == "1") {
+	if($InstructorDb->id_tipo_workshop == "2") {
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
 	}
-	if($InstructorDb->id_tipo_workshop  == "2") {
+	if($InstructorDb->id_tipo_workshop  == "1") {
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_ansible.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
 	}
 
@@ -121,7 +121,7 @@ $InstructorDb->ObtemConfiguracoesDb();
 	<?php
 	}
 	} else {
-		$msg = "Sua instancia ja foi solicitada...";
+		$msg = "Sua instancia ja foi solicitada... ou email invalido!";
 	}
 	?>
   <div class="col-md-6">

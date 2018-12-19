@@ -11,5 +11,6 @@ COPY src/php.ini /etc/php.ini
 COPY src/ansible.cfg /etc/ansible/ansible.cfg
 COPY assets/httpd.conf /etc/httpd/conf/httpd.conf
 RUN mkdir /workshop-pv/ && chmod -R 777 /run/httpd && chmod -R 777 /etc/httpd/logs && chmod -R 777 /var/lib/php/ && chmod -R 777 /etc/ansible/ && chmod -R 777 /workshop-pv/ && chown -R 12345 /var/www/html/*
-USER 12345
+# Nao foi possivel usar usuarios dinamicos devido ao ansible
+#USER 12345
 CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
