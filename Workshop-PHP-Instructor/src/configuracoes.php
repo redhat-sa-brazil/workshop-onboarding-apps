@@ -83,7 +83,7 @@ if(isset($_POST['salvar'])) {
 	// =====================
 	$fpj = fopen("$arquivo_json", "w+");
 	$contj = $_POST['gce_json'];
-	fputs($fpj, "$contj");
+	fputs($fpj, $contj);
 	fclose($fpj);
 
         $fps = fopen("$ssh_private_key", "w+");
@@ -97,7 +97,7 @@ if(isset($_POST['salvar'])) {
 
         $fpj = fopen("$arquivo_json_pv", "w+");
         $contj = $_POST['gce_json'];
-        fputs($fpj, "$contj");
+        fputs($fpj, $contj);
         fclose($fpj);
 
         $fps = fopen("$ssh_private_key_pv", "w+");
@@ -170,7 +170,7 @@ salvo: true
 
   $Instructor->gce_project_id = "$gce_project_id";
   $Instructor->gce_sa_email = "$gce_sa_email";
-  $Instructor->gce_json = "$gce_json";
+  $Instructor->gce_json = $gce_json;
   $Instructor->ssh_private_key = "$ssh_private_key";
   $Instructor->aws_access_key = "$aws_access_key";
   $Instructor->aws_secret_key = "$aws_secret_key";
@@ -191,6 +191,7 @@ salvo: true
   $Instructor->link_formulario_feedback = "$link_formulario_feedback";
   $Instructor->provider = "$provider";
   $Instructor->id_tipo_workshop = "$id_tipo_workshop";
+  
   $Instructor->SalvaConfigDb();
   $Instructor->GeraConfigFiles();
 }
@@ -494,7 +495,7 @@ $InstructorDb->ObtemConfiguracoesDb();
       $Db2 = new Db;
         $qr = "select * from tipo_workshop";
         $rs = $Db2->m_query($qr);
-        while($y=$Db->m_fetch_array($rs)) {
+        while($y=$Db2->m_fetch_array($rs)) {
             $id_tipo_workshop = $y['id_tipo_workshop'];
             $tipo_workshop = $y['tipo_workshop'];
 				if($InstructorDb->id_tipo_workshop == $id_tipo_workshop) {

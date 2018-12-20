@@ -182,13 +182,14 @@
                         $Db = new Db;
                         $qr = "select id_configuration from configuration";
                         $rs = $Db->m_query($qr);
+                        $gce_json = base64_encode($this->gce_json);
                         if($Db->m_num_rows($rs) > 0) {
                                 $id_configuration = $Db->m_result($rs, 'id_configuration');
                                 $qr = "update configuration set
                                 gce_sa_email = '$this->gce_sa_email',
                                 provider = '$this->provider',
 gce_project_id = '$this->gce_project_id',
-gce_json = '$this->gce_json',
+gce_json = '$gce_json',
 ssh_private_key = '$this->ssh_private_key',
 aws_access_key = '$this->aws_access_key',
 aws_secret_key = '$this->aws_secret_key',
@@ -215,7 +216,7 @@ id_tipo_workshop = '$this->id_tipo_workshop' where id_configuration = '$id_confi
                                 gce_sa_email = '$this->gce_sa_email',
                                 provider = '$this->provider',
 gce_project_id = '$this->gce_project_id',
-gce_json = '$this->gce_json',
+gce_json = '$gce_json',
 ssh_private_key = '$this->ssh_private_key',
 aws_access_key = '$this->aws_access_key',
 aws_secret_key = '$this->aws_secret_key',
@@ -249,7 +250,7 @@ id_tipo_workshop = '$this->id_tipo_workshop'";
                         while($x=$Db->m_fetch_array($rs)) {
                         $this->gce_project_id = $x['gce_project_id'];
   $this->gce_sa_email = $x['gce_sa_email'];
-  $this->gce_json = $x['gce_json'];
+  $this->gce_json = base64_decode($x['gce_json']);
   $this->provider = $x['provider'];
   $this->ssh_private_key = $x['ssh_private_key'];
   $this->aws_access_key = $x['aws_access_key'];
@@ -286,9 +287,12 @@ public function GeraConfigFiles() {
         $ssh_private_key = "/etc/ansible/playbooks/ssh";
         $ssh_private_key_pv = "/workshop-pv/ssh";
         $rand_name = substr(md5(microtime()), 0, 10);
-
+        //$gce_json = json_encode($this->gce_json);
+        
+        
         // Gera conteudo json GCE
         $fp = fopen("$arquivo_json", "w+");
+
         fputs($fp, $this->gce_json);
         fclose($fp);
 
