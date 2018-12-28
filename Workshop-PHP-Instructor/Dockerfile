@@ -14,4 +14,6 @@ RUN mkdir /workshop-pv/ && chmod -R 777 /run/httpd && chmod -R 777 /etc/httpd/lo
 # Nao foi possivel usar usuarios dinamicos devido ao ansible
 #USER 12345
 RUN chmod g+w /etc/passwd
+COPY assets/copia_user_passwd.sh /tmp/copia_user_passwd.sh
+RUN /tmp/copia_user_passwd.sh
 CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
