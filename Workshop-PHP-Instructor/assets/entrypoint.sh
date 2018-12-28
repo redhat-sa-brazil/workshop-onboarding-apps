@@ -4,4 +4,6 @@ envsubst < /tmp/passwd.template > /tmp/passwd
 export LD_PRELOAD=libnss_wrapper.so
 export NSS_WRAPPER_PASSWD=/tmp/passwd
 export NSS_WRAPPER_GROUP=/etc/group
+mkdir /tmp/home
+chown -R $USER_ID /tmp/home
 /usr/sbin/httpd -D FOREGROUND
