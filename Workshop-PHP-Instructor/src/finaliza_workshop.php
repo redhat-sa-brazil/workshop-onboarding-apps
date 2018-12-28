@@ -117,6 +117,7 @@ require_once("top_navigation.php");
                           <td>
                               <button type="button" class="btn btn-warning" onclick="EnviaEmailAluno('<?php echo $id_student;?>')">Enviar Email Final Aluno</button>
                               <a href="posiciona_aluno.php?id_student=<?php echo $id_student;?>"><button type="button" class="btn btn-warning">Posicionar Tarefa Aluno</button></a>
+                              <a href="remove_aluno.php?id_student=<?php echo $id_student;?>"><button type="button" class="btn btn-danger">Excluir Aluno</button></a>
 
                           </td>
                         </tr>

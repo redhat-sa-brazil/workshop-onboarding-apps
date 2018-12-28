@@ -345,6 +345,7 @@ url_wetty: $this->url_wetty
 link_form_feedback: $this->link_formulario_feedback
 etherpad_url: $this->url_etherpad
 url_etherpad: $this->url_etherpad
+senha_email: $this->senha_email
 
         ";
 
