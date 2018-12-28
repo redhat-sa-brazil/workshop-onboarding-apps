@@ -13,7 +13,8 @@ COPY assets/httpd.conf /etc/httpd/conf/httpd.conf
 RUN mkdir /workshop-pv/ && chmod -R 777 /run/httpd && chmod -R 777 /etc/httpd/logs && chmod -R 777 /var/lib/php/ && chmod -R 777 /etc/ansible/ && chmod -R 777 /workshop-pv/ && chown -R 12345 /var/www/html/*
 # Nao foi possivel usar usuarios dinamicos devido ao ansible
 #USER 12345
-RUN chmod g+w /etc/passwd
+RUN chmod o+w /etc/passwd
 COPY assets/copia_user_passwd.sh /tmp/copia_user_passwd.sh
-RUN /tmp/copia_user_passwd.sh
+RUN chmod 777 /tmp/copia_user_passwd.sh && /tmp/copia_user_passwd.sh
+run chmod o-w /etc/passwd
 CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
