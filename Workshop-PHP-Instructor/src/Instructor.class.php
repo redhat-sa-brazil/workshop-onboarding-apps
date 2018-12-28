@@ -334,7 +334,7 @@ id_instancia_aws: $rand_name
 # ========================
 # Configuracoes Opcionais
 # ========================
-project_id: $this->project_id
+project_id: $this->gce_project_id
 service_account_email: $this->gce_sa_email
 cluster_openshift: $this->cluster_openshift
 token_openshift: $this->token_openshift

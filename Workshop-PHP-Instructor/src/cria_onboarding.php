@@ -103,7 +103,11 @@ $InstructorDb->ObtemConfiguracoesDb();
 	}
 	if($InstructorDb->id_tipo_workshop  == "1") {
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_ansible.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
-	}
+  }
+  $Db2 = new Db;
+  $qr = "update student set cmd_aluno = '$comando' where id_student = '$id_student'";
+  $rs = $Db2->m_query($qr);
+  
 
 	$outputfile = "/tmp/$user-log.txt";
 	$pidfile = "/tmp/$user-pid.txt";
