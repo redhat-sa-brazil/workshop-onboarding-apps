@@ -1,6 +1,6 @@
 FROM centos:7
 USER root
-RUN yum -y update && yum install -y httpd httpd-tools php php-mysql ansible git epel-release centos-release-openshift-origin screen 
+RUN yum -y update && yum install -y httpd httpd-tools php php-mysql ansible git epel-release centos-release-openshift-origin screen
 RUN yum -y install python-crypto python-pip origin-clients git ansible-tower-cli && pip install --upgrade pip 
 RUN pip install --upgrade apache-libcloud
 EXPOSE  8080
@@ -13,8 +13,9 @@ COPY assets/httpd.conf /etc/httpd/conf/httpd.conf
 RUN mkdir /workshop-pv/ && chmod -R 777 /run/httpd && chmod -R 777 /etc/httpd/logs && chmod -R 777 /var/lib/php/ && chmod -R 777 /etc/ansible/ && chmod -R 777 /workshop-pv/ && chown -R 12345 /var/www/html/*
 # Nao foi possivel usar usuarios dinamicos devido ao ansible
 #USER 12345
-RUN chmod o+w /etc/passwd
-COPY assets/copia_user_passwd.sh /tmp/copia_user_passwd.sh
-RUN chmod 777 /tmp/copia_user_passwd.sh && /tmp/copia_user_passwd.sh
-run chmod o-w /etc/passwd
-CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
+RUN yum -y install nss_wrapper gettext
+COPY assets/passwd.template /tmp/passwd.template
+COPY assets/entrypoint.sh /tmp/entrypoint.sh
+RUN chmod 777 /tmp/entrypoint.sh
+#CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
+ENTRYPOINT ["/tmp/entrypoint.sh"]
