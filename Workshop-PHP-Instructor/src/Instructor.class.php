@@ -58,7 +58,8 @@
                         $rsid = $Db->m_query($qrid);
                         $Student->id_student = $Db->m_result($rs, 'id_student');
                         $this->Student = $Student;
-			$Db->m_close();
+                        $Db->m_close();
+                        return $Student->id_student;
 		}
 
 		public function VerificaSeAlunoJaExiste($Student) {
@@ -342,6 +343,9 @@ nome_projeto_openshift: $this->nome_workshop
 endereco_tower: $this->url_tower
 url_wetty: $this->url_wetty
 link_form_feedback: $this->link_formulario_feedback
+etherpad_url: $this->url_etherpad
+url_etherpad: $this->url_etherpad
+
         ";
 
         $fp = fopen($config_yaml, "w+");
