@@ -19,4 +19,4 @@ COPY assets/passwd.template /app/passwd.template
 COPY assets/entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 #CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
-#ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
