@@ -281,6 +281,26 @@ if($wetty_url_env != "" and !isset($Vars['salvo'])) {
 $InstructorDb = new Instructor;
 $InstructorDb->ObtemConfiguracoesDb();
 
+if($InstructorDb->project_id == "") {
+  $InstructorDb->project_id = $Vars['gce_project_id'];
+}
+if($InstructorDb->gce_sa_email == "") {
+  $InstructorDb->gce_sa_email = $Vars['gce_sa_email'];
+}
+if($InstructorDb->cluster_openshift == "") {
+  $InstructorDb->cluster_openshift = 	$Vars['cluster_openshift'];
+}
+
+if($InstructorDb->gce_json == "") {
+  $InstructorDb->gce_json = $conteudo_gce_json;
+}
+
+if($InstructorDb->ssh_private_key == "") {
+  $InstructorDb->ssh_private_key = $conteudo_ssh_private_key;
+}
+if($InstructorDb->token_openshift == "") {
+  $InstructorDb->token_openshift = 	$Vars['token_openshift'];
+}
 
 
 ?>
