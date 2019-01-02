@@ -282,10 +282,10 @@ $InstructorDb = new Instructor;
 $InstructorDb->ObtemConfiguracoesDb();
 
 if($InstructorDb->project_id == "") {
-  $InstructorDb->project_id = $Vars['gce_project_id'];
+  $InstructorDb->project_id =  $JsonGCE->gce_project_id;
 }
 if($InstructorDb->gce_sa_email == "") {
-  $InstructorDb->gce_sa_email = $Vars['gce_sa_email'];
+  $InstructorDb->gce_sa_email =  $JsonGCE->gce_sa_email;
 }
 if($InstructorDb->cluster_openshift == "") {
   $InstructorDb->cluster_openshift = 	$Vars['cluster_openshift'];
