@@ -204,7 +204,7 @@ salvo: true
 // =================================
 // Carrega configuracoes salvas
 // =================================
-/*
+
 if(file_exists($config_yaml_pv)) {
 	$Matriz = file("$config_yaml_pv");
 } else {
@@ -275,11 +275,14 @@ $wetty_url_env = getenv("WETTY_URL");
 if($wetty_url_env != "" and !isset($Vars['salvo'])) {
 	$Vars['url_wetty'] = $wetty_url_env;
 }
-*/
+
 
 // Carrega do DB
 $InstructorDb = new Instructor;
 $InstructorDb->ObtemConfiguracoesDb();
+
+
+
 ?>
 
 <div class="right_col" role="main">
@@ -415,6 +418,11 @@ $InstructorDb->ObtemConfiguracoesDb();
                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nome Projeto Openshift<span class="required">*</span>
                         </label>
+                        <?php
+                        if($InstructorDb->nome_projeto_openshift == "") {
+                          $InstructorDb->nome_projeto_openshift = "workshop-alunos";
+                        }
+                        ?>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="nome_projeto_openshift" name="nome_projeto_openshift" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text"  value="<?php echo $InstructorDb->nome_projeto_openshift;?>">
                         </div>
@@ -515,7 +523,7 @@ $InstructorDb->ObtemConfiguracoesDb();
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Selecione o tipo do Workshop</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Selecione o Provider</label>
                          <div class="col-md-9 col-sm-9 col-xs-12">
                          <select class="form-control" name="provider">
 			<?php

@@ -339,7 +339,7 @@ project_id: $this->gce_project_id
 service_account_email: $this->gce_sa_email
 cluster_openshift: $this->cluster_openshift
 token_openshift: $this->token_openshift
-nome_projeto_openshift: $this->nome_workshop
+nome_projeto_openshift: $this->nome_workshop_openshift
 endereco_tower: $this->url_tower
 url_wetty: $this->url_wetty
 link_form_feedback: $this->link_formulario_feedback
