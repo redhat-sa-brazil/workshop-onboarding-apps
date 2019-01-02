@@ -238,7 +238,7 @@ if(file_exists($arquivo_json_pv)) {
 }
 
 if(!isset($Vars['salvo'])) {
-	$Vars['gce_project_id'] = $JsonGCE->gce_project_id;
+	$Vars['gce_project_id'] = $JsonGCE->project_id;
 	$Vars['gce_sa_email'] = $JsonGCE->client_email;
 	$Vars['url_etherpad'] = getenv("url_etherpad");
 	$Vars['nome_projeto_openshift'] = "workshop-alunos";
@@ -282,10 +282,10 @@ $InstructorDb = new Instructor;
 $InstructorDb->ObtemConfiguracoesDb();
 
 if($InstructorDb->project_id == "") {
-  $InstructorDb->project_id =  $JsonGCE->gce_project_id;
+  $InstructorDb->project_id =  $JsonGCE->project_id;
 }
 if($InstructorDb->gce_sa_email == "") {
-  $InstructorDb->gce_sa_email =  $JsonGCE->gce_sa_email;
+  $InstructorDb->gce_sa_email =  $JsonGCE->client_email;
 }
 if($InstructorDb->cluster_openshift == "") {
   $InstructorDb->cluster_openshift = 	$Vars['cluster_openshift'];
