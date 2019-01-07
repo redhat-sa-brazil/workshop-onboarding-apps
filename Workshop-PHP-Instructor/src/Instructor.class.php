@@ -28,6 +28,7 @@
         public $Student;
         public $project_id;
         public $url_tower;
+        public $create_student_instance;
         
  
                 //public $email_remetente;
@@ -189,6 +190,7 @@
                                 $qr = "update configuration set
                                 gce_sa_email = '$this->gce_sa_email',
                                 provider = '$this->provider',
+                                create_student_instance = '$this->create_student_instance',
 gce_project_id = '$this->gce_project_id',
 gce_json = '$gce_json',
 ssh_private_key = '$this->ssh_private_key',
@@ -216,6 +218,7 @@ id_tipo_workshop = '$this->id_tipo_workshop' where id_configuration = '$id_confi
                                 $qr = "insert into configuration set
                                 gce_sa_email = '$this->gce_sa_email',
                                 provider = '$this->provider',
+                                create_student_instance = '$this->create_student_instance',
 gce_project_id = '$this->gce_project_id',
 gce_json = '$gce_json',
 ssh_private_key = '$this->ssh_private_key',
@@ -253,6 +256,7 @@ id_tipo_workshop = '$this->id_tipo_workshop'";
   $this->gce_sa_email = $x['gce_sa_email'];
   $this->gce_json = base64_decode($x['gce_json']);
   $this->provider = $x['provider'];
+  $this->create_student_instance = $x['create_student_instance'];
   $this->ssh_private_key = $x['ssh_private_key'];
   $this->aws_access_key = $x['aws_access_key'];
   $this->aws_secret_key = $x['aws_secret_key'];
@@ -311,6 +315,7 @@ email_remetente: $this->email_remetente
 nome_workshop: $this->nome_workshop
 provider: $this->provider
 chave_ssh: $ssh_private_key
+create_student_instance: $this->create_student_instance
 
 
 # ========================

@@ -148,6 +148,7 @@ nome_workshop varchar(255),
 url_ansible_tower varchar(255),
 url_wetty varchar(255),
 url_etherpad varchar(255),
+create_student_instance varchar(1) default 'N',
 provider varchar(20),
 link_formulario_feedback varchar(255),
 id_tipo_workshop int

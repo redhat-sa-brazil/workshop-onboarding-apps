@@ -106,7 +106,9 @@ if(isset($_POST['salvar'])) {
         fclose($fps);
 
 
-	$gce_sa_email = $_POST['gce_sa_email'];
+  $gce_sa_email = $_POST['gce_sa_email'];
+  $create_student_instance = $_POST['create_student_instance'];
+
 	$gce_project_id = $_POST['gce_project_id'];
 	$ssh_user = $_POST['ssh_user'];
   
@@ -179,6 +181,7 @@ salvo: true
   $Instructor->aws_security_group = "$aws_security_group";
   $Instructor->aws_key_name = "$aws_key_name";
   $Instructor->ssh_user = "$ssh_user";
+  $Instructor->create_student_instance = "$create_student_instance";
   $Instructor->cluster_openshift = "$cluster_openshift";
   $Instructor->nome_projeto_openshift = "$nome_projeto_openshift";
   $Instructor->token_openshift = "$token_openshift";
@@ -564,7 +567,27 @@ if($InstructorDb->token_openshift == "") {
                         </div>
                       </div>
 
-
+<div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Provisiona Instancias para Alunos?</label>
+                         <div class="col-md-9 col-sm-9 col-xs-12">
+                         <select class="form-control" name="create_student_instance">
+			<?php
+           
+				if($InstructorDb->create_student_instance == "S") {
+            $S = " selected";
+            $N = "";
+					} else {
+            $N = " selected";
+            $S = "";
+          }
+					
+			?>
+                          
+                            <option value="S" <?php echo $S;?>>Sim</option>
+                            <option value="N" <?php echo $N;?>>Nao</option>
+                           </select>
+                        </div>
+                      </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

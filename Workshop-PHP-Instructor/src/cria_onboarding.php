@@ -114,8 +114,8 @@ $InstructorDb->ObtemConfiguracoesDb();
 	$commandfile = "/tmp/$user-cmd.txt";
 	$fp = fopen($commandfile, "w+");
 	fputs($fp, $comando);
-	fclose($fp);
-	exec(sprintf("%s > %s 2>&1 & echo $! >> %s", $comando, $outputfile, $pidfile));
+  fclose($fp);
+  exec(sprintf("%s > %s 2>&1 & echo $! >> %s", $comando, $outputfile, $pidfile));
 		$msg = "Voce recebera um email com detalhes para conexao";
 	?>
 	<?php
