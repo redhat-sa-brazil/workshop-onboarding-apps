@@ -316,6 +316,7 @@ nome_workshop: $this->nome_workshop
 provider: $this->provider
 chave_ssh: $ssh_private_key
 create_student_instance: $this->create_student_instance
+usuario_ssh: $this->ssh_user
 
 
 # ========================
