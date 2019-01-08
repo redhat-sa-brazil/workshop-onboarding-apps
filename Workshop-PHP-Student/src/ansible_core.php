@@ -578,7 +578,7 @@ require_once("top_navigation.php");
 <p>Primeiro passo é acessar o servidor Ansible-Engine e instale os pacotes relacionados ao Ansible-Core.</p>
 </div>
 <div class="sect4">
-<h5 id="_conectando_ao_servidor">Conectando ao Servidor</h5>
+<h5 id="_conectando_ao_servidor">Conectando ao Servidor (caso nao possua o terminal web)</h5>
 <div id="__asciidoctor-preview-846__" class="literalblock">
 <div class="content">
 <pre>ssh -i &lt;chave privada&gt; workshop@<?php echo getenv("IP_INSTANCIA");?></pre>
@@ -589,16 +589,12 @@ require_once("top_navigation.php");
 <h5 id="_instala_o_do_ansible_core_passo_passo">Instalação do Ansible Core passo - passo</h5>
 <div id="__asciidoctor-preview-880__" class="literalblock">
 <div class="content">
-<pre>#(Opcional) yum  localinstall -y https://mirror.cedia.org.ec/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm <i class="conum" data-value="1"></i><b>(1)</b>
+<pre>
 sudo yum install -y ansible  <i class="conum" data-value="2"></i><b>(2)</b></pre>
 </div>
 </div>
 <div id="__asciidoctor-preview-890__" class="colist arabic">
 <table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Instalação do repositório epel</td>
-</tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Instalação do Ansible Core</td>
@@ -658,6 +654,26 @@ cd /workshop</pre>
 
 <div class="sect3">
 <h4 id="_lab03_m_dulos_para_execu_o_de_comandos">LAB03 - Módulos para execução de comandos</h4>
+
+
+<div class="sect4">
+<h5 id="_usando_o_m_dulo_ping">Usando o módulo ping</h5>
+<div id="__asciidoctor-preview-1190__" class="literalblock">
+<div class="content">
+<pre>ansible -i inventario.ini all -m ping <i class="conum" data-value="1"></i><b>(1)</b></pre>
+</div>
+</div>
+<div id="__asciidoctor-preview-1198__" class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>É possível testar se todos os servidores registrados dentro do inventário estão funcionais a nível de rede</td>
+</tr>
+</table>
+</div>
+</div>
+
+
 <div class="sect4">
 <h5 id="_utilizando_o_comando_externo_uptime">Utilizando o comando externo - uptime</h5>
 <div id="__asciidoctor-preview-1064__" class="literalblock">
@@ -692,22 +708,9 @@ cd /workshop</pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_usando_o_m_dulo_ping">Usando o módulo ping</h5>
-<div id="__asciidoctor-preview-1190__" class="literalblock">
-<div class="content">
-<pre>ansible -i inventario.ini all -m ping <i class="conum" data-value="1"></i><b>(1)</b></pre>
-</div>
-</div>
-<div id="__asciidoctor-preview-1198__" class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>É possível testar se todos os servidores registrados dentro do inventário estão funcionais a nível de rede</td>
-</tr>
-</table>
-</div>
-</div>
+
+
+
 <div class="sect4">
 <h5 id="_validando_o_n_vel_de_privil_gio_do_usu_rio_login_fornecido">Validando  o nível de privilégio do usuário <?php echo getenv("ALUNO");?></h5>
 <div id="__asciidoctor-preview-1252__" class="literalblock">
