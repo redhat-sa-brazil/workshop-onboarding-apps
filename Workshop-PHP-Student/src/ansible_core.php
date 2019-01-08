@@ -532,12 +532,12 @@ require_once("top_navigation.php");
 <td class="tableblock halign-left valign-top"><p class="tableblock">Centos 7</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><?php echo getenv("ALUNO");?>-server1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><?php echo getenv("SERVER1");?></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servidor 1 para automacao</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Centos 7</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><?php echo getenv("ALUNO");?>-server2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><?php echo getenv("SERVER2");?></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servidor 2 para automacao</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Centos 7</p></td>
 </tr>
@@ -637,9 +637,9 @@ cd /workshop</pre>
  ansible_ssh_user=workshop
  ansible_ssh_private_key_file=/workshop/chave
 [web]
-<?php echo getenv("ALUNO");?>-server1
+<?php echo getenv("SERVER1");?>
 [banco]
-<?php echo getenv("ALUNO");?>-server2</pre>
+<?php echo getenv("SERVER2");?></pre>
 </div>
 </div>
 </div>
@@ -649,8 +649,8 @@ cd /workshop</pre>
 <h5 id="_criando_invent_rio">Testando acesso as instancias</h5>
 <div id="__asciidoctor-preview-976__" class="literalblock">
 <div class="content">
-<pre>ssh -i chave <?php echo getenv("ALUNO");?>-server1</pre>
-<pre>ssh -i chave <?php echo getenv("ALUNO");?>-server2</pre>
+<pre>ssh -i chave <?php echo getenv("SERVER1");?></pre>
+<pre>ssh -i chave <?php echo getenv("SERVER2");?></pre>
 </div>
 </div>
 </div>
