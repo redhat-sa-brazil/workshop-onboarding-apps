@@ -616,7 +616,7 @@ sudo yum install -y ansible  <i class="conum" data-value="2"></i><b>(2)</b></pre
 <h5 id="_usando_usuario_ansible_core">Usando usuario <?php echo getenv("USUARIOSSH");?></h5>
 <div id="__asciidoctor-preview-956__" class="literalblock">
 <div class="content">
-<pre>sudo su - <?php echo getenv("USUARIOSSH");?>
+<pre>sudo su - <?php echo getenv("USUARIOSSH");?><br>
 cd /workshop</pre>
 </div>
 </div>
@@ -634,10 +634,10 @@ cd /workshop</pre>
 <div id="__asciidoctor-preview-1006__" class="literalblock">
 <div class="content">
 <pre>[all:vars]
- ansible_ssh_user=<?php echo getenv("USUARIOSSH");?>
+ ansible_ssh_user=<?php echo getenv("USUARIOSSH");?><br>
  ansible_ssh_private_key_file=/workshop/chave
 [web]
-<?php echo getenv("SERVER1");?>
+<?php echo getenv("SERVER1");?><br>
 [banco]
 <?php echo getenv("SERVER2");?></pre>
 </div>
@@ -859,7 +859,7 @@ cd /workshop</pre>
 <pre>---
 - name: Segundo Playbook - trabalhando com loop
   hosts: web
-  remote_user: <?php echo getenv("USUARIOSSH");?>
+  remote_user: <?php echo getenv("USUARIOSSH");?><br>
   become: yes
   gather_facts: no
   vars:
@@ -903,7 +903,7 @@ cd /workshop</pre>
 <pre>---
 - name: Trabalhando com Handlers
   hosts: web
-  remote_user: <?php echo getenv("USUARIOSSH");?>
+  remote_user: <?php echo getenv("USUARIOSSH");?><br>
   become: yes
 
   tasks:
@@ -953,7 +953,7 @@ cd /workshop</pre>
 <pre>---
 - name: Trabalhando com tags
   hosts: web
-  remote_user: <?php echo getenv("USUARIOSSH");?>
+  remote_user: <?php echo getenv("USUARIOSSH");?><br>
   become: yes
 
   tasks:
@@ -1038,7 +1038,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com Condicional
   hosts: web
-  remote_user: <?php echo getenv("USUARIOSSH");?>
+  remote_user: <?php echo getenv("USUARIOSSH");?><br>
   become: yes
 
   tasks:
@@ -1070,7 +1070,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com  saida de comandos
   hosts: web
-  remote_user: <?php echo getenv("USUARIOSSH");?>
+  remote_user: <?php echo getenv("USUARIOSSH");?><br>
   become: yes
 
   tasks:
@@ -1105,7 +1105,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Ignorando errors
   hosts: web
-  remote_user: <?php echo getenv("USUARIOSSH");?>
+  remote_user: <?php echo getenv("USUARIOSSH");?><br>
   become: yes
 
   tasks:
@@ -1142,7 +1142,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Tratando arquivos Selinux e HTTPD
   hosts: web
-  remote_user: <?php echo getenv("USUARIOSSH");?>
+  remote_user: <?php echo getenv("USUARIOSSH");?><br>
   become: yes
 
   tasks:
@@ -1198,7 +1198,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com variaveis
   hosts: web
-  remote_user: <?php echo getenv("USUARIOSSH");?>
+  remote_user: <?php echo getenv("USUARIOSSH");?><br>
   become: yes
 
   tasks:
@@ -1246,7 +1246,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com template jinja2
   hosts: web
-  remote_user: <?php echo getenv("USUARIOSSH");?>
+  remote_user: <?php echo getenv("USUARIOSSH");?><br>
   become: yes
   vars: <i class="conum" data-value="4"></i><b>(4)</b>
     http_port: 80
