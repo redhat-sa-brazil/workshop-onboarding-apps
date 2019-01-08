@@ -613,10 +613,10 @@ sudo yum install -y ansible  <i class="conum" data-value="2"></i><b>(2)</b></pre
 <p>Neste laborátorio iremos criar um inventário para nosso laboratório</p>
 </div>
 <div class="sect4">
-<h5 id="_usando_usuario_ansible_core">Usando usuario workshop</h5>
+<h5 id="_usando_usuario_ansible_core">Usando usuario <?php getenv("USUARIOSSH");?></h5>
 <div id="__asciidoctor-preview-956__" class="literalblock">
 <div class="content">
-<pre>sudo su - workshop
+<pre>sudo su - <?php getenv("USUARIOSSH");?>
 cd /workshop</pre>
 </div>
 </div>
@@ -634,7 +634,7 @@ cd /workshop</pre>
 <div id="__asciidoctor-preview-1006__" class="literalblock">
 <div class="content">
 <pre>[all:vars]
- ansible_ssh_user=workshop
+ ansible_ssh_user=<?php getenv("USUARIOSSH");?>
  ansible_ssh_private_key_file=/workshop/chave
 [web]
 <?php echo getenv("SERVER1");?>
@@ -672,15 +672,6 @@ cd /workshop</pre>
 <div id="__asciidoctor-preview-1094__" class="literalblock">
 <div class="content">
 <pre>ansible web -s -i inventario.ini -m yum -a "name=httpd state=present"</pre>
-</div>
-</div>
-</div>
-
-<div class="sect4">
-<h5 id="_resolve_problema_de_repositorio_remoto">Resolve problema de repositorio remoto</h5>
-<div id="__asciidoctor-preview-1118__" class="literalblock">
-<div class="content">
-<pre>ansible-playbook /workshop/fix_repo_local.yml -i inventario.ini</pre>
 </div>
 </div>
 </div>
@@ -795,7 +786,7 @@ cd /workshop</pre>
   hosts: web <i class="conum" data-value="1"></i><b>(1)</b>
   become: yes
   vars:
-  remote_user: workshop <i class="conum" data-value="2"></i><b>(2)</b>
+  remote_user: <?php getenv("USUARIOSSH");?> <i class="conum" data-value="2"></i><b>(2)</b>
 
   tasks:
   - name: Instala a ferramenta net-tools <i class="conum" data-value="3"></i><b>(3)</b>
@@ -868,7 +859,7 @@ cd /workshop</pre>
 <pre>---
 - name: Segundo Playbook - trabalhando com loop
   hosts: web
-  remote_user: workshop
+  remote_user: <?php getenv("USUARIOSSH");?>
   become: yes
   gather_facts: no
   vars:
@@ -912,7 +903,7 @@ cd /workshop</pre>
 <pre>---
 - name: Trabalhando com Handlers
   hosts: web
-  remote_user: workshop
+  remote_user: <?php getenv("USUARIOSSH");?>
   become: yes
 
   tasks:
@@ -962,7 +953,7 @@ cd /workshop</pre>
 <pre>---
 - name: Trabalhando com tags
   hosts: web
-  remote_user: workshop
+  remote_user: <?php getenv("USUARIOSSH");?>
   become: yes
 
   tasks:
@@ -1047,7 +1038,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com Condicional
   hosts: web
-  remote_user: workshop
+  remote_user: <?php getenv("USUARIOSSH");?>
   become: yes
 
   tasks:
@@ -1079,7 +1070,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com  saida de comandos
   hosts: web
-  remote_user: workshop
+  remote_user: <?php getenv("USUARIOSSH");?>
   become: yes
 
   tasks:
@@ -1114,7 +1105,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Ignorando errors
   hosts: web
-  remote_user: workshop
+  remote_user: <?php getenv("USUARIOSSH");?>
   become: yes
 
   tasks:
@@ -1151,7 +1142,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Tratando arquivos Selinux e HTTPD
   hosts: web
-  remote_user: workshop
+  remote_user: <?php getenv("USUARIOSSH");?>
   become: yes
 
   tasks:
@@ -1207,7 +1198,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com variaveis
   hosts: web
-  remote_user: workshop
+  remote_user: <?php getenv("USUARIOSSH");?>
   become: yes
 
   tasks:
@@ -1255,7 +1246,7 @@ ansible-playbook example.yaml --tags “all” <i class="conum" data-value="2"><
 <pre>---
 - name: Trabalhando com template jinja2
   hosts: web
-  remote_user: workshop
+  remote_user: <?php getenv("USUARIOSSH");?>
   become: yes
   vars: <i class="conum" data-value="4"></i><b>(4)</b>
     http_port: 80
