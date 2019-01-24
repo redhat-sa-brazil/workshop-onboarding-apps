@@ -1,7 +1,7 @@
 FROM centos:7
 USER root
-RUN yum -y update && yum install -y httpd httpd-tools php php-mysql ansible git epel-release centos-release-openshift-origin screen
-RUN yum -y install python-crypto python-pip origin-clients git ansible-tower-cli && pip install --upgrade pip 
+RUN yum -y update && yum install -y httpd httpd-tools php php-mysql ansible git epel-release centos-release-openshift-origin37 screen
+RUN yum -y install python-crypto python-pip origin-clients-3.7.0-1.0.7ed6862 git ansible-tower-cli && pip install --upgrade pip 
 RUN pip install --upgrade apache-libcloud
 RUN pip install --upgrade boto
 RUN pip install --upgrade boto3
