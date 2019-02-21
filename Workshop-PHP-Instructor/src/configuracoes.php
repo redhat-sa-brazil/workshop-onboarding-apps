@@ -119,7 +119,7 @@ if(isset($_POST['salvar'])) {
 	$senha_email = $_POST['senha_email'];
 	$nome_workshop = $_POST['nome_workshop'];
 	$url_ansible_tower = $_POST['url_ansible_tower'];
-	$rhpds_ansible_url_ = $_POST['rhpds_ansible_url'];
+	$rhpds_ansible_url = $_POST['rhpds_ansible_url'];
 	$url_wetty = $_POST['url_wetty'];
 	$link_form_feedback = $_POST['link_formulario_feedback'];
 	$tipo_workshop = $_POST['tipo_workshop'];
@@ -197,7 +197,7 @@ salvo: true
   $Instructor->link_formulario_feedback = "$link_formulario_feedback";
   $Instructor->provider = "$provider";
   $Instructor->id_tipo_workshop = "$id_tipo_workshop";
-  print_r($Instructor);
+  //print_r($Instructor);
   
   $Instructor->SalvaConfigDb();
   $Instructor->GeraConfigFiles();
