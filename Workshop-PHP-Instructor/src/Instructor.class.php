@@ -22,6 +22,7 @@
 	public $url_ansible_tower;
 	public $url_wetty;
 	public $url_etherpad;
+	public $rhpds_ansible_url;
 	public $link_formulario_feedback;
         public $id_tipo_workshop;
         public $provider;
@@ -208,6 +209,7 @@ email_remetente = '$this->email_remetente',
 senha_email = '$this->senha_email',
 nome_workshop = '$this->nome_workshop',
 url_ansible_tower = '$this->url_ansible_tower',
+rhpds_ansible_url = '$this->rhpds_ansible_url',
 url_wetty = '$this->url_wetty',
 url_etherpad = '$this->url_etherpad',
 link_formulario_feedback = '$this->link_formulario_feedback',
@@ -236,6 +238,7 @@ email_remetente = '$this->email_remetente',
 senha_email = '$this->senha_email',
 nome_workshop = '$this->nome_workshop',
 url_ansible_tower = '$this->url_ansible_tower',
+rhpds_ansible_url = '$this->rhpds_ansible_url',
 url_wetty = '$this->url_wetty',
 url_etherpad = '$this->url_etherpad',
 link_formulario_feedback = '$this->link_formulario_feedback',
@@ -271,6 +274,7 @@ id_tipo_workshop = '$this->id_tipo_workshop'";
   $this->email_remetente = $x['email_remetente'];
   $this->senha_email = $x['senha_email'];
   $this->nome_workshop = $x['nome_workshop'];
+  $this->rhpds_ansible_url = $x['rhpds_ansible_url'];
   $this->url_ansible_tower = $x['url_ansible_tower'];
   $this->url_wetty = $x['url_wetty'];
   $this->url_etherpad = $x['url_etherpad'];
@@ -347,6 +351,7 @@ cluster_openshift: $this->cluster_openshift
 token_openshift: $this->token_openshift
 nome_projeto_openshift: $this->nome_projeto_openshift
 endereco_tower: $this->url_ansible_tower
+rhpds_ansible_url: $this->rhpds_ansible_url
 url_wetty: $this->url_wetty
 link_form_feedback: $this->link_formulario_feedback
 etherpad_url: $this->url_etherpad

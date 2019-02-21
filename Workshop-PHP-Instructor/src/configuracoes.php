@@ -119,6 +119,7 @@ if(isset($_POST['salvar'])) {
 	$senha_email = $_POST['senha_email'];
 	$nome_workshop = $_POST['nome_workshop'];
 	$url_ansible_tower = $_POST['url_ansible_tower'];
+	$rhpds_ansible_url_ = $_POST['rhpds_ansible_url'];
 	$url_wetty = $_POST['url_wetty'];
 	$link_form_feedback = $_POST['link_formulario_feedback'];
 	$tipo_workshop = $_POST['tipo_workshop'];
@@ -137,6 +138,7 @@ token_openshift: $token_openshift
 email_remetente: $email_remetente
 nome_workshop: $nome_workshop
 url_ansible_tower: $url_ansible_tower
+rhpds_ansible_url: $rhpds_ansible_url
 senha_email: $senha_email
 url_wetty: $url_wetty
 link_form_feedback: $link_form_feedback
@@ -189,6 +191,7 @@ salvo: true
   $Instructor->senha_email = "$senha_email";
   $Instructor->nome_workshop = "$nome_workshop";
   $Instructor->url_ansible_tower = "$url_ansible_tower";
+  $Instructor->rhpds_ansible_url = "$rhpds_ansible_url";
   $Instructor->url_wetty = "$url_wetty";
   $Instructor->url_etherpad = "$url_etherpad";
   $Instructor->link_formulario_feedback = "$link_formulario_feedback";
@@ -499,6 +502,14 @@ if($InstructorDb->token_openshift == "") {
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="url_wetty" name="url_wetty" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text"  value="<?php echo $InstructorDb->url_wetty;?>">
+                        </div>
+                      </div>
+
+<div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">RHPDS Ansible URL<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="rhpds_ansible_url" name="rhpds_ansible_url" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text"  value="<?php echo $InstructorDb->rhpds_ansible_url;?>">
                         </div>
                       </div>
 
