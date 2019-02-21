@@ -485,71 +485,42 @@ require_once("top_navigation.php");
 <div class="sect3">
 <h4 id="_lab01_acessando_o_tower">LAB01 - Acessando o Tower</h4>
 <div id="__asciidoctor-preview-2474__" class="paragraph">
-<p>Acesse: <a href="https://<?php echo getenv("TOWER");?>" target="_blank" class="bare"><button type="button" class="btn btn-danger btn-xs">https://<?php echo getenv("TOWER");?></button></a>
+<p>Acesse: <a href="<?php echo getenv("RHPDS_ANSIBLE_URL");?>" target="_blank" class="bare"><button type="button" class="btn btn-danger btn-xs">https://<?php echo getenv("RHPDS_ANSIBLE_URL");?></button></a>
 <br>
-Login: <?php echo getenv("ALUNO");?><br>
-Senha: redhat</p>
+Siga o procedimento para instalacao e ao colocar o inventario, preencha da seguinte forma:
+<pre>
+[tower]
+localhost ansible_ssh_user=workshop ansible_ssh_private_key_file=/workshop/chave ansible_become=true
+[database]
+[all:vars]
+admin_password='ansibleWS'
+pg_host=''
+pg_port=''
+pg_database='awx'
+pg_username='awx'
+pg_password='ansibleWS'
+rabbitmq_port=5672
+rabbitmq_vhost=tower
+rabbitmq_username=tower
+rabbitmq_password='ansibleWS'
+rabbitmq_cookie=cookiemonster
+rabbitmq_use_long_name=false
+required_ram=3192
+</pre>
+<br>
+Depois de instalado, acesse a url do seu tower:
+
+<pre>
+<a href="http://<?php echo getenv('IP_INSTANCIA');?>">http://<?php echo getenv('IP_INSTANCIA');?></a>
+</pre>
+<br>
+Login: admin<br>
+Senha: ansibleWS</p>
 </div>
-<div id="__asciidoctor-preview-2480__" class="imageblock">
-<div class="content">
-<img src="images/AnsibleCoreAndTower-bb5ff.png" alt="AnsibleCoreAndTower bb5ff.png">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_lab02_controle_de_permiss_es">LAB02 - Controle de Permissões</h4>
-<div class="sect5">
-<h6 id="_controle_granular_de_permissoes">Controle granular de permissoes</h6>
-<div id="__asciidoctor-preview-2520__" class="paragraph">
-<p>Ao navegar pelas abas, perceberá que seu usuário ainda não possui acesso a projetos, inventários e templates. Observe o administrador dando permissões e como elas afetam sua visualização imediatamente.</p>
-</div>
-<div id="__asciidoctor-preview-2526__" class="imageblock">
-<div class="content">
-<img src="images/AnsibleCoreAndTower-1c48d.png" alt="AnsibleCoreAndTower 1c48d.png">
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_lab03_trabalhando_em_equipe">LAB03 - Trabalhando em Equipe</h4>
-<div id="__asciidoctor-preview-2552__" class="paragraph">
-<p>Então, escolha o seu destino:</p>
-</div>
-<div id="__asciidoctor-preview-2558__" class="imageblock">
-<div class="content">
-<img src="images/chooseyourdestiny.jpg" alt="chooseyourdestiny.jpg">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_lab04_rodando_jobs">LAB04 - Rodando Jobs</h4>
-<div id="__asciidoctor-preview-2580__" class="paragraph">
-<p>Depois de escolher sua equipe, clique em "Templates". Voce verá a lista de Jobs que sua equipe tem permissão para executar.</p>
-</div>
-<div id="__asciidoctor-preview-2586__" class="imageblock">
-<div class="content">
-<img src="images/AnsibleCoreAndTower-63866.png" alt="AnsibleCoreAndTower 63866.png">
-</div>
-</div>
-<div id="__asciidoctor-preview-2590__" class="paragraph">
-<p>Clique no ícone do "foguete" e preencha o campo limit com o seu login e clique em "Launch"</p>
-</div>
-<div id="__asciidoctor-preview-2596__" class="imageblock">
-<div class="content">
-<img src="images/AnsibleCoreAndTower-a9e1c.png" alt="AnsibleCoreAndTower a9e1c.png">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_lab05_auditoria">LAB05 - Auditoria</h4>
-<div id="__asciidoctor-preview-2616__" class="paragraph">
-<p>Acompanhe o resultado dos comandos do playbook.</p>
-</div>
-<div id="__asciidoctor-preview-2622__" class="imageblock">
-<div class="content">
-<img src="images/AnsibleCoreAndTower-a4fcb.png" alt="AnsibleCoreAndTower a4fcb.png">
-</div>
-</div>
+<h4>Atencao!</h4>
+<pre>
+Durante a configuracao da sua credencial, use a chave presente em /workshop/chave e usuario workshop (para o caso de Google) ou centos (para o caso de Amazon).
+</pre>
 <div id="__asciidoctor-preview-2630__" class="listingblock">
 <div class="content">
 <pre></pre>
