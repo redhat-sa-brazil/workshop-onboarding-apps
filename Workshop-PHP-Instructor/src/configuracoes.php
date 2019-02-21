@@ -197,6 +197,7 @@ salvo: true
   $Instructor->link_formulario_feedback = "$link_formulario_feedback";
   $Instructor->provider = "$provider";
   $Instructor->id_tipo_workshop = "$id_tipo_workshop";
+  print_r($Instructor);
   
   $Instructor->SalvaConfigDb();
   $Instructor->GeraConfigFiles();
