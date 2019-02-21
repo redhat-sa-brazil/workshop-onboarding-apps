@@ -525,21 +525,27 @@ require_once("top_navigation.php");
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servidor</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Função</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S.O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP Publico</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><?php echo getenv("IP_INSTANCIA");?></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ansible engine e Servidor de aplicação</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Centos 7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><?php echo getenv("IP_INSTANCIA");?></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><?php echo getenv("SERVER1");?></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servidor 1 para automacao</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Centos 7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><?php echo getenv("SERVER1_PUBLICO");?></p></td>
+
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><?php echo getenv("SERVER2");?></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Servidor 2 para automacao</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Centos 7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><?php echo getenv("SERVER2_PUBLICO");?></p></td>
+
 </tr>
 </tbody>
 </table>

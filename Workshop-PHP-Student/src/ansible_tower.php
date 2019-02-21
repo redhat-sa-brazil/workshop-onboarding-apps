@@ -490,7 +490,7 @@ require_once("top_navigation.php");
 Siga o procedimento para instalacao e ao colocar o inventario, preencha da seguinte forma:
 <pre>
 [tower]
-localhost ansible_ssh_user=workshop ansible_ssh_private_key_file=/workshop/chave ansible_become=true
+localhost ansible_ssh_user=centos ansible_ssh_private_key_file=/workshop/chave ansible_become=true
 [database]
 [all:vars]
 admin_password='ansibleWS'
@@ -523,7 +523,11 @@ Durante a configuracao da sua credencial, use a chave presente em /workshop/chav
 </pre>
 <div id="__asciidoctor-preview-2630__" class="listingblock">
 <div class="content">
-<pre></pre>
+<pre>
+Ao final, acesse a URL do Web1 atraves:#
+<a href="http://<?php echo getenv("SERVER1_PUBLICO");?>">http://<?php echo getenv("SERVER1_PUBLICO");?></a>
+
+</pre>
 </div>
 </div>
 </div>
