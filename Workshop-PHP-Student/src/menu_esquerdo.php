@@ -4,7 +4,7 @@
 		if($url_etherpad != "") {
 			$url_etherpad = "http://$url_etherpad/p/".getenv("NOME_WORKSHOP");
 		} else {
-			$url_etherpad = "https://pad.apps.paas.rhbrlab.com/p/".getenv("NOME_WORKSHOP");
+			$url_etherpad = "http://etherpad-workshop-apoio.18.231.181.222.nip.io/p/ansible4ever";
 		}
 		?>
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
