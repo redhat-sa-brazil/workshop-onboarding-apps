@@ -58,7 +58,7 @@
                         $rs = $Db->m_query($qr);
                         $qrid = "select id_student from student where nome = '$nome' and id_area = '$id_area' and empresa = '$empresa' and email = '$email' order by id_student desc limit 1";
                         $rsid = $Db->m_query($qrid);
-                        $Student->id_student = $Db->m_result($rs, 'id_student');
+                        $Student->id_student = $Db->m_result($rsid, 'id_student');
                         $this->Student = $Student;
                         $Db->m_close();
                         return $Student->id_student;
