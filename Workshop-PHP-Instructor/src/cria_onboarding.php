@@ -65,7 +65,17 @@
 	$id_student = $Instructor->CadastraAluno($Student);
 	$user = str_replace(".", "-", $user);
 	$user = str_replace("_", "-", $user);
-  $userrhpds = "user".$id_student;
+  	$userrhpds = "user".$id_student;
+
+
+	// Associa instancia ao aluno
+	$qrinstance = "select * from ansible_instances where id_ansible_instance = '$id_student'";
+	$rsinstance = $Db->m_query($qrinstance);
+	$ip_publico = $Db->m_result($rsinstance, "ip");
+	$usuario_ssh = $Db->m_result($rsinstance, "login");
+	$pass = $Db->m_result($rsintance, "pass");
+	$qrup = "update ansible_instaces set id_student = '$id_student' where id_ansible_instance = '$id_ansible_instance'";
+	$rsup = $Db->m_query($qrup);
 // =================================
 // Carrega configuracoes salvas
 // =================================
@@ -102,13 +112,12 @@ $InstructorDb->ObtemConfiguracoesDb();
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
 	}
 	if($InstructorDb->id_tipo_workshop  == "1") {
-	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_ansible.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
+	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_ansible.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno usuario_ssh=$usuario_ssh ip_publico=$ip_publico pass=$pass\" ";
   }
   $Db2 = new Db;
   $qr = "update student set cmd_aluno = '$comando' where id_student = '$id_student'";
   $rs = $Db2->m_query($qr);
   
-
 	$outputfile = "/tmp/$user-log.txt";
 	$pidfile = "/tmp/$user-pid.txt";
 	$commandfile = "/tmp/$user-cmd.txt";
