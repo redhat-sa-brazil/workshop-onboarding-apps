@@ -69,13 +69,14 @@
 
 
 	// Associa instancia ao aluno
+	$Db3 = new Db;
 	$qrinstance = "select * from ansible_instances where id_ansible_instance = '$id_student'";
-	$rsinstance = $Db->m_query($qrinstance);
-	$ip_publico = $Db->m_result($rsinstance, "ip");
-	$usuario_ssh = $Db->m_result($rsinstance, "login");
-	$pass = $Db->m_result($rsintance, "pass");
+	$rsinstance = $Db3->m_query($qrinstance);
+	$ip_publico = $Db3->m_result($rsinstance, "ip");
+	$usuario_ssh = $Db3->m_result($rsinstance, "login");
+	$pass = $Db3->m_result($rsintance, "pass");
 	$qrup = "update ansible_instaces set id_student = '$id_student' where id_ansible_instance = '$id_ansible_instance'";
-	$rsup = $Db->m_query($qrup);
+	$rsup = $Db3->m_query($qrup);
 // =================================
 // Carrega configuracoes salvas
 // =================================
