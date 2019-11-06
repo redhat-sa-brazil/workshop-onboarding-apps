@@ -11,6 +11,7 @@
                   <li><a><i class="fa fa-wrench"></i> Configuracoes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="configuracoes.php">Configurações Gerais</a></li>
+                      <li><a href="importa_dados_ansible.php">Importa RHPDS Ansible</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-cogs"></i> Operacoes <span class="fa fa-chevron-down"></span></a>
