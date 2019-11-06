@@ -74,8 +74,8 @@
 	$rsinstance = $Db3->m_query($qrinstance);
 	$ip_publico = $Db3->m_result($rsinstance, "ip");
 	$usuario_ssh = $Db3->m_result($rsinstance, "login");
-	$pass = $Db3->m_result($rsintance, "pass");
-	$qrup = "update ansible_instaces set id_student = '$id_student' where id_ansible_instance = '$id_ansible_instance'";
+	$pass = $Db3->m_result($rsinstance, "pass");
+	$qrup = "update ansible_instances set id_student = '$id_student' where id_ansible_instance = '$id_student'";
 	$rsup = $Db3->m_query($qrup);
 // =================================
 // Carrega configuracoes salvas
@@ -92,7 +92,10 @@ $arquivo_json_pv = "/workshop-pv/gce.json";
 $ssh_private_key = "/etc/ansible/playbooks/ssh";
 $ssh_private_key_pv = "/workshop-pv/ssh";
 
-
+if(!file_exists($config_yaml)) {
+	$fp = fopen($config_yaml, "w+");
+	fclose($fp);
+}
 $Matriz = file("$config_yaml");
 $Vars = array();
 for($x=0;$x<sizeof($Matriz);$x++) {
