@@ -50,7 +50,33 @@ $Db = new Db;
 $qr = "select rhpds_ansible_url from configuration";
 $rs = $Db->m_query($qr);
 $url = $Db->m_result($rs, 'rhpds_ansible_url');
-echo $url;
+$url_completa = "http://".$url;
+$matriz = file("$url_completa");
+for($x=0;$x<sizeof($matriz);$x++) {
+        $linha = $matriz[$x];
+        if(strpos($linha, "password:") !== false) {
+                $linha = strip_tags(str_replace("password: ", "", $linha));
+                $pass = chop(trim(ltrim(rtrim($linha))));
+
+        }
+        if(strpos($linha, "<pre><code>ssh") !== false and strpos($linha, $url) === false) {
+                $linha = strip_tags($linha);
+                $linha = str_replace("ssh ", "", $linha);
+                $linha = explode("@", $linha);
+                $login = $linha[0];
+                $ip = chop($linha[1]);
+                $qr = "select * from ansible_instances where login = '$login' and ip = '$ip' ";
+                $rs = $Db->m_query($qr);
+                if($Db->m_num_rows($rs) == 0) {
+			echo "Novo registro encontrado... inserindo na base...<br>";
+                        $qrins = "insert into ansible_instances set login = '$login', ip = '$ip', pass = '$pass'";
+                        $rsins = $Db->m_query($qrins);
+                } else {
+			echo "Registro ja encontrado... skipping...<br>";
+		}
+        }
+}
+
 $Db->m_close();
 ?>
 
