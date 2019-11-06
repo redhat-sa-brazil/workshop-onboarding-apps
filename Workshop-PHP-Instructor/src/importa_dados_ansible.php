@@ -44,6 +44,8 @@ require_once("top_navigation.php");
         <div class="right_col" role="main">
 
 <?php
+require_once "config.php";
+
 $Db = new Db;
 $qr = "select rhpds_ansible_url from configuration";
 $rs = $Db->m_query($qr);
