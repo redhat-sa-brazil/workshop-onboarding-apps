@@ -23,3 +23,4 @@ COPY assets/entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 #CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
 ENTRYPOINT ["/app/entrypoint.sh"]
+RUN chmod 777 /var/www/html/*.php
