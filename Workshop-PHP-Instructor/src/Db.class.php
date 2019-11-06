@@ -162,7 +162,13 @@ id_tipo_workshop int
 	$qr = "create table tipo_workshop ( id_tipo_workshop int primary key not null, tipo_workshop varchar(255))";
 
 	$rs = $this->m_query($qr);
+	
 
+ // ========= Tabela para Instancias ansible RHPDS
+
+        $qr = "create table ansible_instances (id_ansible_instance int primary key not null auto_increment, id_student int, ip varchar(255), login varchar(255), pass varchar(255))";
+
+        $rs = $this->m_query($qr);
 
 
 	}
