@@ -63,7 +63,9 @@ require_once("top_navigation.php");
                             
 
 <p>
-<a href="<?php echo getenv("URL_WETTY");?>" target="_blank"> <img src="images/terminal.png" width=64 height=64 /><button type="button" class="btn btn-success btn-xs">Acessar Instancia</button></a>  <h2><b><i>IP Publico Instancia:<?php echo getenv('IP_INSTANCIA');?></i></b></h2>
+<a href="<?php echo getenv("URL_WETTY");?>" target="_blank"> <img src="images/terminal.png" width=64 height=64 /><button type="button" class="btn btn-success btn-xs">Acessar Instancia</button></a>  <br><h2><b><i>IP Publico Instancia:<?php echo getenv('IP_INSTANCIA');?></i></b></h2>
+<br>
+<h2><b><i>Senha de Acesso:<?php echo getenv('PASS');?></i></b></h2>
 </p>
 
 

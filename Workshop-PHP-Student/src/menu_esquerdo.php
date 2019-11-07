@@ -30,22 +30,8 @@
                   </li>
                   <li><a><i class="fa fa-cogs"></i> Workshop Ansible <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-			<?php
-			if(getenv("IP_INSTANCIA") != "127.0.0.1") {
-			?>
-                      <li><a href="ansible_core.php">Ansible Core</a></li>
-                      <li><a href="ansible_tower.php">Ansible Tower</a></li>
-			<?php
-			} else {
-
-			?>
-
-
-                      <li><a href="https://ansible.github.io/workshops/exercises/ansible_rhel/" target="_blank">Workshop Ansible</a></li>
-
-			<?php
-			}
-			?>
+                      <li><a href="https://github.com/ansible/workshops/blob/devel/exercises/ansible_rhel/README.pt-br.md">Ansible PT-BR</a></li>
+                      <li><a href="https://ansible.github.io/workshops/exercises/ansible_rhel/">Ansible EN</a></li>
                     </ul>
                   </li>
 	
