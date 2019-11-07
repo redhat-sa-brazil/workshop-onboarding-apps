@@ -84,26 +84,12 @@ require_once("top_navigation.php");
                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                           <div class="panel-body">
                             
-<br>Faca o download da chave privada <a href="chaveprivada.key"><button type="button" class="btn btn-success btn-xs">Clique aqui para baixar a chave privada</button></a> <br>
 
-Se utilizando SSH: ssh -i chaveprivada.key workshop@<?php echo getenv("IP_INSTANCIA");?><br>
+Se utilizando SSH: ssh <?php echo getenv("USUARIOSSH");?>@<?php echo getenv("IP_INSTANCIA");?><br>
 
 <p></p>
 
-<img src="images/putty_icon.png" width=64 height=64/>
-Para utilizar o putty, faca as configuracoes conforme demonstrado abaixo. <a href="chaveprivada.key"><button type="button" class="btn btn-success btn-xs">Clique aqui para baixar a chave privada</button></a>
 
-<br>1 - Digite workshop@IP da sua instancia no campo "Host Name", digite um nome no campo "Saved Sessions" e clique em "Save" <br>
-
-<img src="images/putty1.png" />
-
-<br>2 - Clique em "Auth" no menu Connection -> SSH -> Auth, marque a opcao "Allow agent forwarding" e clique em "Browse" para localizar a chave privada que voce baixou no link acima.<br>
-
-<img src="images/putty2.png" />
-
-<br>3 - Clique novamente em "Session", clique em "Save" novamente e clique em "Open"<br>
-
-<img src="images/putty3.png" />
 
 
 
@@ -113,18 +99,15 @@ Para utilizar o putty, faca as configuracoes conforme demonstrado abaixo. <a hre
                       </div>
                       <div class="panel">
                         <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          <h4 class="panel-title">Opcao #3: Maquina Virtual</h4>
+                          <h4 class="panel-title">Acesso Tower</h4>
                         </a>
                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                           <div class="panel-body">
                           
-
-<br>1 - Escolha uma das imagens abaixo para download: <br>
-
-<br><a href="http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2"><button type="button" class="btn btn-warning btn-xs">KVM</button></a><br>
-<br><a href="https://atlas.hashicorp.com/centos/boxes/7"><button type="button" class="btn btn-success btn-xs">Vagrant</button></a><br><br>
-
-<li>Ou peca um pen-drive para o instrutor.</li>
+<?php
+$endereco_tower = "http://".getenv("USUARIOSSH").".".getenv("RHPDS_ANSIBLE_URL");
+?>
+<br><a href="<?php echo $endereco_tower;?>" target="_blank"><?php echo $endereco_tower;?></a> <br>
 
 
 

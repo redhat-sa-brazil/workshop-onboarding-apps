@@ -30,8 +30,8 @@
                   </li>
                   <li><a><i class="fa fa-cogs"></i> Workshop Ansible <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="https://github.com/ansible/workshops/blob/devel/exercises/ansible_rhel/README.pt-br.md">Ansible PT-BR</a></li>
-                      <li><a href="https://ansible.github.io/workshops/exercises/ansible_rhel/">Ansible EN</a></li>
+                      <li><a href="https://github.com/ansible/workshops/blob/devel/exercises/ansible_rhel/README.pt-br.md" target="_blank">Ansible PT-BR</a></li>
+                      <li><a href="https://ansible.github.io/workshops/exercises/ansible_rhel/" target="_blank">Ansible EN</a></li>
                     </ul>
                   </li>
 	
