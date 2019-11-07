@@ -6,10 +6,10 @@ RUN pip install --upgrade apache-libcloud
 RUN pip install --upgrade boto
 RUN pip install --upgrade boto3
 EXPOSE  8080
-RUN echo oi
+RUN echo forcaatualizacao
 RUN mkdir -p /etc/ansible/playbooks/tmp && cd /etc/ansible/playbooks && git clone https://github.com/redhat-sa-brazil/workshop-onboarding.git && mkdir /root/.ansible && mkdir /usr/share/httpd/.ssh && touch /etc/ansible/playbooks/ssh_gce
 RUN chown -R apache /etc/ansible/playbooks && chown -R apache /root && echo 127.0.0.1 > /etc/ansible/hosts && ln -s /usr/bin/oc /usr/local/bin/oc && chown -R apache /usr/share/httpd && chmod 600 /etc/ansible/playbooks/ssh_gce && chmod -R 777 /etc/ansible/playbooks/tmp
-COPY src/ /var/www/html/
+
 COPY src/php.ini /etc/php.ini
 COPY src/ansible.cfg /etc/ansible/ansible.cfg
 COPY assets/httpd.conf /etc/httpd/conf/httpd.conf
@@ -20,6 +20,8 @@ RUN yum -y install nss_wrapper gettext
 RUN mkdir /app && chmod -R 777 /app
 COPY assets/passwd.template /app/passwd.template
 COPY assets/entrypoint.sh /app/entrypoint.sh
+COPY src/ /var/www/html/
+RUN chown -R 12345 /var/www/html/*
 RUN chmod +x /app/entrypoint.sh
 #CMD     ["/usr/sbin/httpd","-D","FOREGROUND"]
 ENTRYPOINT ["/app/entrypoint.sh"]

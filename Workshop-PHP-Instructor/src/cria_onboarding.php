@@ -71,6 +71,7 @@
 	// Associa instancia ao aluno
 	$Db3 = new Db;
 	$qrinstance = "select * from ansible_instances where id_ansible_instance = '$id_student'";
+	//echo $qrinstance;
 	$rsinstance = $Db3->m_query($qrinstance);
 	$ip_publico = $Db3->m_result($rsinstance, "ip");
 	$usuario_ssh = $Db3->m_result($rsinstance, "login");
@@ -84,7 +85,7 @@
 // Variaveis de arquivo
 // =================================
 
-
+$etherpad_url = getenv("ETHERPAD_URL");
 $config_yaml = "/etc/ansible/playbooks/workshop-onboarding/config.yml";
 $config_yaml_pv = "/workshop-pv/config.yml";
 $arquivo_json = "/etc/ansible/playbooks/gce.json";
@@ -116,7 +117,7 @@ $InstructorDb->ObtemConfiguracoesDb();
 	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_openshift.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno\"";
 	}
 	if($InstructorDb->id_tipo_workshop  == "1") {
-	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_ansible.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno usuario_ssh=$usuario_ssh ip_publico=$ip_publico pass=$pass\" ";
+	$comando = "ansible-playbook /etc/ansible/playbooks/workshop-onboarding/instructor_student_instance_ansible.yml -e \"nome_aluno=$nome_aluno user=$user email_aluno=$email_aluno usuario_ssh=$usuario_ssh ip_publico=$ip_publico pass=$pass etherpad_url=$etherpad_url\" ";
   }
   $Db2 = new Db;
   $qr = "update student set cmd_aluno = '$comando' where id_student = '$id_student'";
