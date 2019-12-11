@@ -105,6 +105,10 @@ if(isset($_POST['salvar'])) {
         fputs($fps, "$conts");
         fclose($fps);
 
+        // Muda permissao das chaves
+        chmod($ssh_private_key, 0600);
+        chmod($ssh_private_key_pv, 0600);
+
 
   $gce_sa_email = $_POST['gce_sa_email'];
   $create_student_instance = $_POST['create_student_instance'];
