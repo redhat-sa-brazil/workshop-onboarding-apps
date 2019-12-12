@@ -44,11 +44,12 @@ require_once("top_navigation.php");
         <!-- page content -->
         <div class="right_col" role="main">
 <a href="https://redhatbsb.gitbook.io/workshop-openshift" target="_blank"><button type="button" class="btn btn-success btn-xs">Clique para acessar o Openshift Workshop-Dev Book</button></a>
-</div>
 <br>
- <div class="right_col" role="main">
+ou
+<br>
 <a href="workshop_openshift_infra.php" target="_blank"><button type="button" class="btn btn-danger btn-xs">Clique para acessar o Openshift Workshop Infra</button></a>
 </div>
+
 
         <!-- /page content -->
 
